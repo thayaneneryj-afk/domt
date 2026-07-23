@@ -2,7 +2,7 @@
    DOMT Comunicação e Marketing — Design System
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;0,900;1,600&display=swap');
 
 :root {
   /* Palette — laranja, marrom, preto e branco */
@@ -25,9 +25,9 @@
   --gradient-brand: linear-gradient(120deg, var(--orange) 0%, var(--brown) 100%);
   --gradient-brand-soft: linear-gradient(120deg, rgba(249, 73, 1, 0.18), rgba(122, 74, 38, 0.2));
 
-  /* Type */
-  --font-display: 'Space Grotesk', 'Inter', sans-serif;
-  --font-body: 'Inter', sans-serif;
+  /* Type — Montserrat Black (títulos) + Montserrat Medium (texto), da identidade DOMT */
+  --font-display: 'Montserrat', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
 
   /* Layout */
   --container: 1180px;
@@ -59,6 +59,7 @@ body {
   background: var(--ink);
   color: var(--text-on-ink);
   font-family: var(--font-body);
+  font-weight: 500;
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -68,7 +69,7 @@ body {
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   line-height: 1.12;
-  font-weight: 600;
+  font-weight: 900;
   letter-spacing: -0.01em;
 }
 
@@ -135,6 +136,12 @@ h1, h2, h3, h4 {
 
 .grad-text {
   background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.grad-text--orange-fade {
+  background: linear-gradient(100deg, var(--orange) 0%, rgba(249, 73, 1, 0.35) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -272,7 +279,7 @@ h1, h2, h3, h4 {
   letter-spacing: 0.02em;
   color: var(--text-on-ink);
 }
-.brand__logo { height: 30px; width: auto; display: block; }
+.brand__logo { height: 44px; width: auto; display: block; margin: auto; }
 .brand__logo--footer { height: 38px; }
 
 .nav-desktop {
