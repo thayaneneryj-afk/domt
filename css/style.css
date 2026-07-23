@@ -689,13 +689,31 @@ h1, h2, h3, h4 {
 }
 .logo-chip img {
   display: block;
-  height: 30px;
+  height: 44px;
   width: auto;
-  max-width: 130px;
+  max-width: 170px;
   object-fit: contain;
 }
+/* Nem toda logo tem o mesmo "peso" visual na mesma altura de caixa —
+   ajuste fino por marca para que todas leiam no mesmo tamanho aparente. */
+.logo-chip--pawfect img,
+.logo-chip--sandes-electric img { height: 62px; }
+.logo-chip--grupo-alpha img { height: 56px; }
+.logo-chip--wellness img,
+.logo-chip--imperio img { height: 50px; }
+.logo-chip--moto img,
+.logo-chip--kzl img,
+.logo-chip--sandes-motors img { height: 40px; }
 @media (min-width: 760px) {
-  .logo-chip img { height: 38px; max-width: 160px; }
+  .logo-chip img { height: 58px; max-width: 210px; }
+  .logo-chip--pawfect img,
+  .logo-chip--sandes-electric img { height: 82px; }
+  .logo-chip--grupo-alpha img { height: 74px; }
+  .logo-chip--wellness img,
+  .logo-chip--imperio img { height: 66px; }
+  .logo-chip--moto img,
+  .logo-chip--kzl img,
+  .logo-chip--sandes-motors img { height: 52px; }
 }
 .logo-chip:hover {
   opacity: 1;
