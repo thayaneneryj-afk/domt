@@ -97,7 +97,7 @@
     let raf = null;
 
     const LABELS = ['Estratégia', 'Comunicação', 'Posicionamento', 'Conteúdo', 'Tráfego', 'Conexão', 'Percepção'];
-    const COLORS = ['255, 90, 44', '169, 139, 250'];
+    const COLORS = ['255, 90, 44', '122, 74, 38'];
 
     function resize() {
       const rect = wrap.getBoundingClientRect();
