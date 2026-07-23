@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DOMT Comunicação e Marketing — Marketing que transforma negócios</title>
+<meta name="description" content="A DOMT conecta estratégia, comunicação e criatividade para transformar a forma como negócios se posicionam, se comunicam e crescem. Marketing não é ação isolada — é estratégia.">
+<meta name="theme-color" content="#0a0a0e">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DOMT Comunicação e Marketing">
+<meta property="og:title" content="DOMT — Marketing que transforma negócios">
+<meta property="og:description" content="Estratégia, comunicação, posicionamento, conteúdo e mídia trabalhando juntos para transformar a forma como negócios são percebidos, lembrados e escolhidos.">
+<meta property="og:locale" content="pt_BR">
+<!-- TODO: adicionar og:image (1200x630) e og:url com o domínio final -->
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DOMT — Marketing que transforma negócios">
+<meta name="twitter:description" content="A DOMT conecta estratégia, comunicação e criatividade para transformar negócios.">
+
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="canonical" href="https://www.domt.com.br/"> <!-- TODO: confirmar domínio final -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="css/style.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "DOMT Comunicação e Marketing",
+  "founder": { "@type": "Person", "name": "Thayane Nery" },
+  "foundingDate": "2022",
+  "description": "Empresa de comunicação e marketing que conecta estratégia, posicionamento, conteúdo e mídia para transformar negócios.",
+  "areaServed": "BR",
+  "url": "https://www.domt.com.br/",
+  "sameAs": []
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<!-- ============================== HEADER ============================== -->
+<header class="site-header" id="site-header">
+  <div class="container">
+    <a href="#top" class="brand" aria-label="DOMT — página inicial">
+      <svg class="brand__mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="markGrad" x1="4" y1="6" x2="58" y2="58" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#ff5a2c"/>
+            <stop offset="1" stop-color="#a98bfa"/>
+          </linearGradient>
+        </defs>
+        <path d="M14 44 L32 16 L50 44" stroke="url(#markGrad)" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <circle cx="14" cy="44" r="5.4" fill="#0a0a0e" stroke="url(#markGrad)" stroke-width="3.4"/>
+        <circle cx="32" cy="16" r="5.4" fill="url(#markGrad)"/>
+        <circle cx="50" cy="44" r="5.4" fill="#0a0a0e" stroke="url(#markGrad)" stroke-width="3.4"/>
+        <path d="M14 44 L50 44" stroke="url(#markGrad)" stroke-width="3.4" stroke-linecap="round" opacity="0.5"/>
+      </svg>
+      DOMT
+      <span class="brand__tag">Comunicação &amp; Marketing</span>
+    </a>
+
+    <nav class="nav-desktop" aria-label="Navegação principal">
+      <a href="#metodo">Método</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#diferencial">Diferencial</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="#contato" class="btn btn--primary">
+        Vamos conversar
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
+      <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav-mobile" aria-label="Abrir menu">
+        <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="nav-mobile" id="nav-mobile" aria-label="Navegação móvel">
+  <a href="#metodo">Método</a>
+  <a href="#servicos">Serviços</a>
+  <a href="#diferencial">Diferencial</a>
+  <a href="#sobre">Sobre</a>
+  <a href="#contato">Contato</a>
+  <a href="#contato" class="btn btn--primary btn--block">Vamos conversar</a>
+</nav>
+
+<main id="conteudo">
+
+  <!-- ============================== HERO ============================== -->
+  <section class="hero" id="top">
+    <div class="hero__canvas-wrap" aria-hidden="true">
+      <canvas id="hero-network"></canvas>
+    </div>
+    <div class="hero__fade" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="hero__content">
+        <p class="eyebrow section--ink" style="color:var(--text-on-ink-dim)">DOMT · Comunicação e Marketing</p>
+        <h1 class="hero__title">
+          <span class="line">Seu negócio não precisa</span>
+          <span class="line">de mais marketing.</span>
+          <span class="line grad-text">Precisa de uma estratégia</span>
+          <span class="line grad-text">que transforme.</span>
+        </h1>
+        <p class="hero__lede">
+          A DOMT conecta estratégia, comunicação e criatividade para transformar a forma como negócios se posicionam, se comunicam e crescem.
+        </p>
+        <div class="cta-row">
+          <a href="#contato" class="btn btn--primary">
+            Quero transformar meu negócio
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+          <a href="#sobre" class="btn btn--ghost-ink">Conheça a DOMT</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__scroll-cue" aria-hidden="true">
+      <span class="line-el"></span>
+      Role para entender
+    </div>
+  </section>
+
+  <!-- ============================== O PROBLEMA ============================== -->
+  <section class="section section--paper section--dotted" id="problema">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">O problema</p>
+        <h2 class="section-title">O problema nem sempre é a falta de marketing.<br class="hide-mobile"> Às vezes, é a falta de direção.</h2>
+        <p class="section-lede">Muitos negócios não param de produzir. Publicam, anunciam, investem. E, mesmo assim, sentem que não estão saindo do lugar. Isso costuma ter uma explicação simples: falta estratégia por trás do que está sendo feito.</p>
+      </div>
+
+      <div class="problem-grid reveal-group">
+        <div class="problem-card reveal" style="--stagger:0">
+          <span class="problem-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 8v4l3 3M12 3a9 9 0 100 18 9 9 0 000-18z"/></svg>
+          </span>
+          <p><strong>Conteúdo sem estratégia</strong>Produzido porque "é dia de postar" — não porque existe algo específico a construir.</p>
+        </div>
+
+        <div class="problem-card reveal" style="--stagger:1">
+          <span class="problem-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11l18-8-8 18-2-8-8-2z"/></svg>
+          </span>
+          <p><strong>Anúncios sem preparo</strong>Campanhas no ar antes de a comunicação estar pronta para receber quem chega por elas.</p>
+        </div>
+
+        <div class="problem-card reveal" style="--stagger:2">
+          <span class="problem-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5m0 14h16M8 15l3-4 3 3 4-6"/></svg>
+          </span>
+          <p><strong>Publicação constante, direção incerta</strong>Presença todos os dias, sem clareza sobre a percepção que está sendo construída.</p>
+        </div>
+
+        <div class="problem-card reveal" style="--stagger:3">
+          <span class="problem-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l2.5 6.5L21 11l-6.5 2.5L12 20l-2.5-6.5L3 11l6.5-2.5z"/></svg>
+          </span>
+          <p><strong>Valor que não se comunica</strong>Bons produtos e serviços que não conseguem traduzir, com clareza, o que realmente entregam.</p>
+        </div>
+
+        <div class="problem-card reveal" style="--stagger:4">
+          <span class="problem-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21c4-3 8-6.5 8-11a8 8 0 10-16 0c0 4.5 4 8 8 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          </span>
+          <p><strong>Falar com todo mundo</strong>E, por consequência, não se conectar de verdade com ninguém específico.</p>
+        </div>
+
+        <div class="problem-card reveal" style="--stagger:5">
+          <span class="problem-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v4H4zM4 12h10v8H4zM18 12v8"/></svg>
+          </span>
+          <p><strong>Posicionamento indefinido</strong>Nenhuma resposta clara para "o que essa marca representa, e para quem".</p>
+        </div>
+      </div>
+
+      <p class="problem-callout reveal">Se algo dessa lista soou familiar, o próximo passo não é produzir mais. É entender melhor o que está sendo comunicado.</p>
+    </div>
+  </section>
+
+  <!-- ============================== NOSSA VISÃO ============================== -->
+  <section class="section section--ink" id="visao">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Nossa visão</p>
+        <h2 class="section-title">Marketing não é um conjunto de ações isoladas.</h2>
+        <p class="section-lede">Conteúdo, posicionamento, anúncios e identidade precisam conversar entre si. Quando cada um caminha sozinho, o negócio até aparece — mas nem sempre é lembrado, entendido ou escolhido.</p>
+      </div>
+
+      <div class="vision-stack reveal-group">
+        <div class="vision-stmt reveal" style="--stagger:0">
+          <span class="vision-stmt__index">01</span>
+          <p>Um anúncio pode trazer uma pessoa até o seu perfil. <em>Mas é a comunicação que ajuda essa pessoa a decidir se deve confiar na marca.</em></p>
+        </div>
+        <div class="vision-stmt reveal" style="--stagger:1">
+          <span class="vision-stmt__index">02</span>
+          <p>Uma marca pode publicar todos os dias. <em>Isso não significa que esteja construindo uma percepção clara.</em></p>
+        </div>
+        <div class="vision-stmt reveal" style="--stagger:2">
+          <span class="vision-stmt__index">03</span>
+          <p>Uma empresa pode investir em tráfego. <em>Mas se a comunicação não sustenta a atenção conquistada, a oportunidade se perde.</em></p>
+        </div>
+      </div>
+
+      <p class="vision-closing reveal">É por isso que a DOMT trabalha conectando as partes: <strong>não basta levar pessoas até uma empresa — é preciso construir motivos para que elas confiem nela.</strong></p>
+    </div>
+  </section>
+
+  <!-- ============================== COMO TRABALHAMOS ============================== -->
+  <section class="section section--paper" id="metodo">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Como trabalhamos</p>
+        <h2 class="section-title">O primeiro passo não é criar conteúdo. É entender o negócio.</h2>
+        <p class="section-lede">Antes de pensar no que uma marca deve postar, é preciso entender quem ela é, para quem fala e onde quer chegar. O método da DOMT existe para garantir essa ordem.</p>
+      </div>
+
+      <div class="method-list reveal-group">
+        <div class="method-item reveal" style="--stagger:0">
+          <div class="method-item__rail">
+            <div class="method-item__num">01</div>
+            <div class="method-item__connector"></div>
+          </div>
+          <div class="method-item__body">
+            <span class="method-item__label">Etapa 1</span>
+            <h3 class="method-item__title">Imersão</h3>
+            <p class="method-item__desc">Entendemos o negócio antes de qualquer proposta de conteúdo ou campanha.</p>
+            <div class="method-item__tags">
+              <span>Negócio</span><span>Produtos e serviços</span><span>Público</span><span>Mercado</span><span>Diferenciais</span><span>Objetivos</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="method-item reveal" style="--stagger:1">
+          <div class="method-item__rail">
+            <div class="method-item__num">02</div>
+            <div class="method-item__connector"></div>
+          </div>
+          <div class="method-item__body">
+            <span class="method-item__label">Etapa 2</span>
+            <h3 class="method-item__title">Posicionamento</h3>
+            <p class="method-item__desc">Definimos como a marca deseja ser percebida e qual espaço quer ocupar na mente do público.</p>
+            <div class="method-item__tags">
+              <span>Percepção desejada</span><span>Espaço na mente do público</span><span>Mensagens-chave</span><span>Diferenciais a fortalecer</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="method-item reveal" style="--stagger:2">
+          <div class="method-item__rail">
+            <div class="method-item__num">03</div>
+            <div class="method-item__connector"></div>
+          </div>
+          <div class="method-item__body">
+            <span class="method-item__label">Etapa 3</span>
+            <h3 class="method-item__title">Estratégia</h3>
+            <p class="method-item__desc">Transformamos os objetivos do negócio em um plano de ação concreto.</p>
+            <div class="method-item__tags">
+              <span>Canais</span><span>Formatos</span><span>Conteúdos</span><span>Campanhas</span><span>Prioridades</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="method-item reveal" style="--stagger:3">
+          <div class="method-item__rail">
+            <div class="method-item__num">04</div>
+            <div class="method-item__connector"></div>
+          </div>
+          <div class="method-item__body">
+            <span class="method-item__label">Etapa 4</span>
+            <h3 class="method-item__title">Comunicação</h3>
+            <p class="method-item__desc">Criamos conteúdos, campanhas e experiências coerentes com a estratégia definida — não o contrário.</p>
+          </div>
+        </div>
+
+        <div class="method-item reveal" style="--stagger:4">
+          <div class="method-item__rail">
+            <div class="method-item__num">05</div>
+          </div>
+          <div class="method-item__body">
+            <span class="method-item__label">Etapa 5</span>
+            <h3 class="method-item__title">Análise e evolução</h3>
+            <p class="method-item__desc">Observamos os resultados, entendemos o que funciona e ajustamos a estratégia com base em dados reais.</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="method-closing reveal">Na DOMT, <span class="grad-text" style="font-weight:700">conteúdo é consequência</span> de uma estratégia bem construída.</p>
+    </div>
+  </section>
+
+  <!-- ============================== SERVIÇOS ============================== -->
+  <section class="section section--ink" id="servicos">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">O que fazemos</p>
+        <h2 class="section-title">Serviços que funcionam em conjunto — não isoladamente.</h2>
+        <p class="section-lede services-intro">Cada frente de trabalho da DOMT pode ser contratada de forma independente. Mas o resultado muda quando elas caminham juntas: cada parte fortalece a seguinte, e a estratégia é o que mantém tudo conectado.</p>
+      </div>
+
+      <div class="services-grid reveal-group">
+        <article class="service-card reveal" style="--stagger:0">
+          <span class="service-card__num">01</span>
+          <span class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="0.6" fill="currentColor"/></svg>
+          </span>
+          <h3>Comunicação estratégica</h3>
+          <p>Construção de uma comunicação com clareza, consistência e direção — a base de tudo o que a marca fala.</p>
+        </article>
+
+        <article class="service-card reveal" style="--stagger:1">
+          <span class="service-card__num">02</span>
+          <span class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 14h4"/></svg>
+          </span>
+          <h3>Social media</h3>
+          <p>Planejamento, criação e gestão de conteúdo para construir presença, relacionamento e reconhecimento.</p>
+        </article>
+
+        <article class="service-card reveal" style="--stagger:2">
+          <span class="service-card__num">03</span>
+          <span class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19l5-11 4 7 3-5 4 9"/></svg>
+          </span>
+          <h3>Conteúdo</h3>
+          <p>Criação de conteúdos estratégicos que traduzem, na prática, o posicionamento da marca.</p>
+        </article>
+
+        <article class="service-card reveal" style="--stagger:3">
+          <span class="service-card__num">04</span>
+          <span class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 17l6-6 4 4 8-8M21 7v6h-6"/></svg>
+          </span>
+          <h3>Tráfego pago</h3>
+          <p>Campanhas pensadas para gerar alcance, oportunidades reais e resultado — não apenas cliques.</p>
+        </article>
+
+        <article class="service-card reveal" style="--stagger:4">
+          <span class="service-card__num">05</span>
+          <span class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l2.5 5 5.5.7-4 3.8 1 5.5-5-2.7-5 2.7 1-5.5-4-3.8 5.5-.7z"/></svg>
+          </span>
+          <h3>Identidade visual</h3>
+          <p>Construção de uma identidade visual coerente com a essência e o posicionamento da marca.</p>
+        </article>
+
+        <article class="service-card reveal" style="--stagger:5">
+          <span class="service-card__num">06</span>
+          <span class="service-card__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20v-6M12 14l7-4V6l-7-4-7 4v4z"/><path d="M5 6l7 4 7-4"/></svg>
+          </span>
+          <h3>Consultoria</h3>
+          <p>Direcionamento estratégico para empresas que precisam entender como melhorar sua comunicação e marketing.</p>
+        </article>
+      </div>
+
+      <p class="services-note reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 2v20M2 12h20"/></svg>
+        A DOMT também monta combinações sob medida entre essas frentes, de acordo com o momento e o objetivo de cada negócio.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================== DIFERENCIAL ============================== -->
+  <section class="section section--paper section--dotted" id="diferencial">
+    <div class="container">
+      <div class="diff-layout">
+        <div class="diff-text reveal">
+          <p class="eyebrow">Diferencial</p>
+          <h2 class="section-title">O que acontece quando marketing, comunicação e estratégia trabalham juntos?</h2>
+          <p class="section-lede" style="margin-bottom:28px">A DOMT não olha apenas para o anúncio. Não olha apenas para o post. Não olha apenas para a identidade visual. Olha para o negócio como um todo.</p>
+
+          <p class="lead-line"><strong>O anúncio</strong> pode gerar o clique.</p>
+          <p class="lead-line"><strong>O conteúdo</strong> pode gerar interesse.</p>
+          <p class="lead-line"><strong>O posicionamento</strong> pode gerar reconhecimento.</p>
+
+          <p class="diff-final">Mas é a <span class="grad-text">estratégia</span> que conecta tudo.</p>
+        </div>
+
+        <div class="venn reveal" aria-hidden="true">
+          <svg viewBox="0 0 320 320" fill="none">
+            <defs>
+              <radialGradient id="vg1" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#ff5a2c" stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="#ff5a2c" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="vg2" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#a98bfa" stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="#a98bfa" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="vg3" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#14141a" stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="#14141a" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <circle cx="130" cy="115" r="95" fill="url(#vg1)" stroke="#ff5a2c" stroke-width="1.4" opacity="0.85"/>
+            <circle cx="190" cy="115" r="95" fill="url(#vg2)" stroke="#a98bfa" stroke-width="1.4" opacity="0.85"/>
+            <circle cx="160" cy="185" r="95" fill="url(#vg3)" stroke="#14141a" stroke-width="1.4" opacity="0.55"/>
+            <text x="82" y="90" font-size="12" fill="#55545f" font-weight="600">ANÚNCIO</text>
+            <text x="205" y="90" font-size="12" fill="#55545f" font-weight="600">CONTEÚDO</text>
+            <text x="122" y="255" font-size="12" fill="#55545f" font-weight="600">POSICIONAMENTO</text>
+            <circle cx="160" cy="160" r="3" fill="#14141a"/>
+            <text x="160" y="152" font-size="13" fill="#14141a" font-weight="700" text-anchor="middle">ESTRATÉGIA</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== SOBRE A DOMT ============================== -->
+  <section class="section section--ink section--dotted" id="sobre">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Sobre a DOMT</p>
+        <h2 class="section-title">4 anos de empresa. Quase uma década de experiência por trás dela.</h2>
+      </div>
+
+      <div class="about-layout">
+        <div class="about-copy reveal">
+          <p class="about-lead">A DOMT existe, formalmente, há 4 anos. A experiência que sustenta o trabalho começou muito antes disso.</p>
+          <p>A DOMT é uma empresa de comunicação e marketing fundada por <strong>Thayane Nery</strong>, que soma quase 10 anos de atuação no digital. Foi nesse período que veio o entendimento prático de como marcas crescem, comunicam e se conectam com as pessoas certas — muito antes de a DOMT existir como CNPJ.</p>
+          <p>A empresa nasceu dessa vivência: acompanhar negócios de perto, entender seus desafios de comunicação e perceber, repetidas vezes, que a maioria não precisava simplesmente de mais conteúdo. Precisava de clareza. Precisava de estratégia. Precisava entender como queria ser percebida.</p>
+          <p>Hoje, a DOMT existe para transformar esse aprendizado em um método — e o marketing, em uma ferramenta real de crescimento para outros negócios.</p>
+        </div>
+
+        <div class="timeline-card reveal">
+          <p class="timeline-card__title">Duas linhas do tempo, uma só experiência</p>
+          <div class="timeline-track">
+            <div class="timeline-track__fill-exp"></div>
+            <div class="timeline-track__fill-cnpj"></div>
+          </div>
+          <div class="timeline-legend">
+            <div class="timeline-legend__item">
+              <span class="timeline-legend__dot timeline-legend__dot--exp"></span>
+              <div>
+                <h4>~10 anos de experiência no digital</h4>
+                <p>A trajetória da fundadora, Thayane Nery, acompanhando marcas e negócios em seus processos de crescimento.</p>
+              </div>
+            </div>
+            <div class="timeline-legend__item">
+              <span class="timeline-legend__dot timeline-legend__dot--cnpj"></span>
+              <div>
+                <h4>4 anos de DOMT formalizada</h4>
+                <p>O tempo de existência da empresa como é hoje — construída sobre uma base de experiência muito mais longa.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== PROVA E AUTORIDADE ============================== -->
+  <section class="section section--paper" id="resultados">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Resultados</p>
+        <h2 class="section-title">Marcas, projetos e histórias que já passaram pela DOMT.</h2>
+        <p class="section-lede">Espaço reservado para os números, marcas e depoimentos reais da DOMT. Estrutura pronta — conteúdo a ser inserido pela equipe.</p>
+      </div>
+
+      <div class="proof-stats reveal-group">
+        <div class="proof-stat reveal" style="--stagger:0"><div class="proof-stat__value">[ ]</div><div class="proof-stat__label">Anos de atuação</div></div>
+        <div class="proof-stat reveal" style="--stagger:1"><div class="proof-stat__value">[ ]</div><div class="proof-stat__label">Marcas atendidas</div></div>
+        <div class="proof-stat reveal" style="--stagger:2"><div class="proof-stat__value">[ ]</div><div class="proof-stat__label">Projetos entregues</div></div>
+        <div class="proof-stat reveal" style="--stagger:3"><div class="proof-stat__value">[ ]</div><div class="proof-stat__label">Segmentos atendidos</div></div>
+      </div>
+
+      <p class="proof-block-title reveal">Marcas atendidas</p>
+      <div class="logo-wall reveal-group">
+        <div class="logo-slot reveal" style="--stagger:0">Espaço reservado<br>para logotipo</div>
+        <div class="logo-slot reveal" style="--stagger:1">Espaço reservado<br>para logotipo</div>
+        <div class="logo-slot reveal" style="--stagger:2">Espaço reservado<br>para logotipo</div>
+        <div class="logo-slot reveal" style="--stagger:3">Espaço reservado<br>para logotipo</div>
+      </div>
+
+      <p class="proof-block-title reveal">Depoimentos</p>
+      <div class="testimonial-grid reveal-group">
+        <div class="testimonial-card reveal" style="--stagger:0">
+          <span class="placeholder-badge">Em breve</span>
+          <p class="testimonial-card__quote">"Espaço reservado para o depoimento de um cliente da DOMT."</p>
+          <p class="testimonial-card__meta">Nome do cliente · Empresa</p>
+        </div>
+        <div class="testimonial-card reveal" style="--stagger:1">
+          <span class="placeholder-badge">Em breve</span>
+          <p class="testimonial-card__quote">"Espaço reservado para o depoimento de um cliente da DOMT."</p>
+          <p class="testimonial-card__meta">Nome do cliente · Empresa</p>
+        </div>
+        <div class="testimonial-card reveal" style="--stagger:2">
+          <span class="placeholder-badge">Em breve</span>
+          <p class="testimonial-card__quote">"Espaço reservado para o depoimento de um cliente da DOMT."</p>
+          <p class="testimonial-card__meta">Nome do cliente · Empresa</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== CTA FINAL ============================== -->
+  <section class="section cta-final" id="contato">
+    <div class="container">
+      <p class="cta-final__eyebrow reveal">Seu negócio está sendo percebido da forma como você gostaria?</p>
+      <h2 class="cta-final__title reveal">Se a resposta ainda não está clara, talvez o primeiro passo não seja criar mais um post.</h2>
+      <p class="cta-final__body reveal">Talvez seja entender melhor a estratégia por trás da sua comunicação. É exatamente por aí que a DOMT começa.</p>
+
+      <div class="cta-row reveal">
+        <a href="mailto:contato@domt.com.br" class="btn btn--primary">
+          Vamos conversar sobre o seu negócio
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+      </div>
+
+      <div class="cta-final__channels reveal">
+        <!-- TODO: substituir pelos canais reais da DOMT -->
+        <a class="channel-pill" href="mailto:contato@domt.com.br">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          contato@domt.com.br
+        </a>
+        <a class="channel-pill" href="https://wa.me/5500000000000" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 01-12.3 7.6L3 21l1.9-5.7A8.5 8.5 0 1121 11.5z"/></svg>
+          WhatsApp
+        </a>
+        <a class="channel-pill" href="https://instagram.com/domt.comunicacao" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#top" class="brand" aria-label="DOMT — página inicial">
+          <svg class="brand__mark" viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <path d="M14 44 L32 16 L50 44" stroke="url(#markGrad)" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <circle cx="14" cy="44" r="5.4" fill="#0a0a0e" stroke="url(#markGrad)" stroke-width="3.4"/>
+            <circle cx="32" cy="16" r="5.4" fill="url(#markGrad)"/>
+            <circle cx="50" cy="44" r="5.4" fill="#0a0a0e" stroke="url(#markGrad)" stroke-width="3.4"/>
+            <path d="M14 44 L50 44" stroke="url(#markGrad)" stroke-width="3.4" stroke-linecap="round" opacity="0.5"/>
+          </svg>
+          DOMT
+        </a>
+        <p>Marketing que transforma negócios. Estratégia, comunicação e criatividade conectadas para transformar como marcas se posicionam, se comunicam e crescem.</p>
+        <div class="footer-social">
+          <!-- TODO: substituir pelos links reais das redes da DOMT -->
+          <a href="https://instagram.com/domt.comunicacao" target="_blank" rel="noopener" aria-label="DOMT no Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="DOMT no LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4.5a2.5 2.5 0 015 0V17M12 10v7"/></svg>
+          </a>
+          <a href="https://wa.me/5500000000000" target="_blank" rel="noopener" aria-label="DOMT no WhatsApp">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 01-12.3 7.6L3 21l1.9-5.7A8.5 8.5 0 1121 11.5z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#problema">O problema</a></li>
+          <li><a href="#metodo">Método</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+          <li><a href="#diferencial">Diferencial</a></li>
+          <li><a href="#sobre">Sobre a DOMT</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="mailto:contato@domt.com.br">contato@domt.com.br</a></li>
+          <li><a href="https://wa.me/5500000000000" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="https://instagram.com/domt.comunicacao" target="_blank" rel="noopener">@domt.comunicacao</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span id="year">2026</span> DOMT Comunicação e Marketing. Todos os direitos reservados.</span>
+      <span>Fundada por Thayane Nery.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
