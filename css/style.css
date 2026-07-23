@@ -407,26 +407,6 @@ h1, h2, h3, h4 {
   margin-bottom: 26px;
 }
 .hero__title .line { display: block; }
-.hero__stats {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  row-gap: 8px;
-  margin: 0 0 32px;
-  font-size: 0.9rem;
-  color: var(--text-on-ink-dim);
-}
-.hero__stats li:not(:last-child)::after {
-  content: '•';
-  margin: 0 14px;
-  color: var(--orange-soft);
-  opacity: 0.7;
-}
-.hero__stats strong {
-  color: var(--text-on-ink);
-  font-family: var(--font-display);
-  font-weight: 800;
-}
 
 .hero__lede {
   font-size: clamp(1.08rem, 1.8vw, 1.35rem);
@@ -464,6 +444,57 @@ h1, h2, h3, h4 {
   100% { transform: translateX(100%); }
 }
 @media (max-width: 640px) { .hero__scroll-cue { display: none; } }
+
+/* ---------------------------------- Marquee de autoridade ---------------------------- */
+.marquee-strip {
+  position: relative;
+  height: 56px;
+  background: var(--black);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+.marquee-strip__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: marqueeScroll 38s linear infinite;
+}
+.marquee-strip:hover .marquee-strip__track { animation-play-state: paused; }
+.marquee-strip__group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.marquee-strip__group span {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 0 30px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.92rem;
+  letter-spacing: 0.03em;
+  color: var(--white);
+}
+.marquee-strip__group span strong {
+  color: var(--orange);
+  font-weight: 800;
+  margin-right: 5px;
+}
+.marquee-strip__dot {
+  padding: 0 !important;
+  color: var(--orange) !important;
+  font-size: 0.7rem;
+}
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@media (min-width: 760px) {
+  .marquee-strip { height: 60px; }
+  .marquee-strip__group span { padding: 0 40px; font-size: 0.98rem; }
+}
 
 /* ---------------------------------- Problem cards ---------------------------- */
 .problem-grid {
