@@ -173,25 +173,26 @@ h1, h2, h3, h4 {
   .section-head--with-badge { flex-direction: row; align-items: center; justify-content: space-between; gap: 32px; }
 }
 .section--crenca {
-  background: var(--orange-soft);
+  background: var(--orange);
   color: var(--ink);
   padding-top: 0;
   overflow: hidden;
 }
 .section--crenca .section-lede { color: rgba(28, 19, 11, 0.72); }
+.section--crenca .belief-item h4 { color: var(--text-on-ink); }
 
 .crenca-banner {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  margin-left: -50vw;
-  height: clamp(240px, 34vw, 440px);
-  overflow: hidden;
-  margin-bottom: clamp(40px, 7vw, 80px);
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+  padding-top: clamp(28px, 4vw, 48px);
+  margin-bottom: clamp(32px, 5vw, 56px);
 }
 .crenca-banner img {
   width: 100%;
-  height: 100%;
+  height: clamp(140px, 15vw, 200px);
+  border-radius: var(--radius-lg);
   object-fit: cover;
   object-position: 50% 78%;
   display: block;
