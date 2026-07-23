@@ -563,6 +563,128 @@ h1, h2, h3, h4 {
   .marquee-strip__group span { padding: 0 16px; font-size: 0.9rem; }
 }
 
+/* ---------------------------------- Portfólio em vídeo (reels) ------------------ */
+.reels-section { overflow: hidden; }
+.reels-wrap {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  margin-left: -50vw;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+.reels-track {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  cursor: grab;
+  padding-bottom: 6px;
+}
+.reels-track::-webkit-scrollbar { display: none; }
+.reels-track.is-dragging { cursor: grabbing; }
+
+.reel-card {
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(160px, 42vw, 220px);
+  aspect-ratio: 9 / 16;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--ink-2);
+  transition: transform 300ms var(--ease), box-shadow 300ms var(--ease);
+}
+@media (min-width: 640px) { .reel-card { width: clamp(190px, 20vw, 240px); } }
+.reel-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(10, 7, 5, 0.55) 100%);
+  pointer-events: none;
+  transition: opacity 250ms ease;
+}
+.reel-card:hover,
+.reel-card.is-playing {
+  transform: scale(1.045);
+  box-shadow: 0 26px 54px -18px rgba(0, 0, 0, 0.75);
+  z-index: 2;
+}
+.reel-card.is-playing::after { opacity: 0; }
+.reel-card__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: var(--ink-2);
+}
+.reel-card__play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(10, 7, 5, 0.5);
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  transition: opacity 250ms ease, transform 250ms ease, background 250ms ease, border-color 250ms ease;
+}
+.reel-card__play svg { width: 20px; height: 20px; margin-left: 2px; }
+.reel-card:hover .reel-card__play {
+  transform: scale(1.08);
+  background: var(--orange);
+  border-color: transparent;
+}
+.reel-card.is-playing .reel-card__play { opacity: 0; pointer-events: none; }
+
+.reel-card--ghost { pointer-events: none; }
+.reel-card--ghost img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.9; }
+
+/* ---------------------------------- Faixa de logos (marquee) --------------------- */
+.logos-marquee-section {
+  background: var(--paper);
+  padding: 40px 0;
+  overflow: hidden;
+}
+.logos-marquee { width: 100%; overflow: hidden; }
+.logos-marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 30s linear infinite;
+}
+.logos-marquee-section:hover .logos-marquee__track { animation-play-state: paused; }
+.logos-marquee__group { display: flex; align-items: center; flex-shrink: 0; }
+.logo-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  margin: 0 12px;
+  padding: 18px 34px;
+  border: 1px dashed rgba(20, 20, 26, 0.22);
+  border-radius: var(--radius-md);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  color: var(--text-on-paper-dim);
+  opacity: 0.65;
+  transition: opacity 300ms ease, color 300ms ease, border-color 300ms ease, transform 300ms ease;
+}
+.logo-chip:hover {
+  opacity: 1;
+  color: var(--orange);
+  border-color: var(--orange);
+  border-style: solid;
+  transform: translateY(-3px);
+}
+
 /* ---------------------------------- Problem cards ---------------------------- */
 .problem-grid {
   display: grid;
