@@ -563,7 +563,7 @@ h1, h2, h3, h4 {
 }
 
 /* ---------------------------------- Portfólio em vídeo (reels) ------------------ */
-.reels-section { overflow: hidden; padding-top: clamp(8px, 1.5vw, 20px); }
+.reels-section { overflow: hidden; padding-top: clamp(0px, 0.8vw, 10px); }
 .reels-wrap {
   width: 100vw;
   position: relative;
@@ -574,7 +574,6 @@ h1, h2, h3, h4 {
 }
 .reels-track {
   display: flex;
-  gap: 16px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
@@ -583,6 +582,12 @@ h1, h2, h3, h4 {
 }
 .reels-track::-webkit-scrollbar { display: none; }
 .reels-track.is-dragging { cursor: grabbing; }
+.reels-group {
+  display: flex;
+  gap: 16px;
+  flex-shrink: 0;
+  padding-right: 16px;
+}
 
 .reel-card {
   position: relative;
@@ -645,7 +650,7 @@ h1, h2, h3, h4 {
 .reel-card__play svg { width: 20px; height: 20px; }
 .reel-card__play .icon-play { margin-left: 2px; }
 .reel-card__play .icon-pause { display: none; }
-.reel-card:not(.reel-card--ghost) { cursor: pointer; }
+.reel-card { cursor: pointer; }
 .reel-card:hover .reel-card__play {
   transform: scale(1.08);
   background: var(--orange);
@@ -662,20 +667,17 @@ h1, h2, h3, h4 {
 .reel-card.is-playing .reel-card__play .icon-play { display: none; }
 .reel-card.is-playing .reel-card__play .icon-pause { display: block; }
 
-.reel-card--ghost { pointer-events: none; }
-.reel-card--ghost img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.9; }
-
 /* ---------------------------------- Faixa de logos (marquee) --------------------- */
 .logos-marquee-section {
   background: var(--paper);
-  padding: 40px 0;
+  padding: 18px 0;
   overflow: hidden;
 }
 .logos-marquee { width: 100%; overflow: hidden; }
 .logos-marquee__track {
   display: flex;
   width: max-content;
-  animation: marqueeScroll 30s linear infinite;
+  animation: marqueeScroll 20s linear infinite;
 }
 .logos-marquee-section:hover .logos-marquee__track { animation-play-state: paused; }
 .logos-marquee__group { display: flex; align-items: center; flex-shrink: 0; }
@@ -683,37 +685,47 @@ h1, h2, h3, h4 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin: 0 30px;
+  margin: 0 26px;
   opacity: 0.55;
   transition: opacity 300ms ease, transform 300ms ease;
 }
 .logo-chip img {
   display: block;
-  height: 44px;
+  height: 38px;
   width: auto;
-  max-width: 170px;
+  max-width: 150px;
   object-fit: contain;
 }
 /* Nem toda logo tem o mesmo "peso" visual na mesma altura de caixa —
    ajuste fino por marca para que todas leiam no mesmo tamanho aparente. */
 .logo-chip--pawfect img,
-.logo-chip--sandes-electric img { height: 62px; }
-.logo-chip--grupo-alpha img { height: 56px; }
+.logo-chip--sandes-electric img,
+.logo-chip--cassulinha img,
+.logo-chip--badu img { height: 54px; }
+.logo-chip--grupo-alpha img,
+.logo-chip--pera img,
+.logo-chip--maxhair img { height: 48px; }
 .logo-chip--cassia img,
-.logo-chip--imperio img { height: 50px; }
+.logo-chip--imperio img { height: 42px; }
 .logo-chip--moto img,
 .logo-chip--kzl img,
-.logo-chip--sandes-motors img { height: 40px; }
+.logo-chip--sandes-motors img,
+.logo-chip--use-dno img { height: 34px; }
 @media (min-width: 760px) {
-  .logo-chip img { height: 58px; max-width: 210px; }
+  .logo-chip img { height: 48px; max-width: 180px; }
   .logo-chip--pawfect img,
-  .logo-chip--sandes-electric img { height: 82px; }
-  .logo-chip--grupo-alpha img { height: 74px; }
+  .logo-chip--sandes-electric img,
+  .logo-chip--cassulinha img,
+  .logo-chip--badu img { height: 68px; }
+  .logo-chip--grupo-alpha img,
+  .logo-chip--pera img,
+  .logo-chip--maxhair img { height: 60px; }
   .logo-chip--cassia img,
-  .logo-chip--imperio img { height: 66px; }
+  .logo-chip--imperio img { height: 54px; }
   .logo-chip--moto img,
   .logo-chip--kzl img,
-  .logo-chip--sandes-motors img { height: 52px; }
+  .logo-chip--sandes-motors img,
+  .logo-chip--use-dno img { height: 44px; }
 }
 .logo-chip:hover {
   opacity: 1;

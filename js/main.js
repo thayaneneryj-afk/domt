@@ -240,14 +240,31 @@
   /* ------------------------------- Reels carousel (portfólio em vídeo) ----------- */
   const reelsTrack = document.getElementById('reelsTrack');
   if (reelsTrack) {
-    const cards = Array.from(reelsTrack.querySelectorAll('.reel-card:not(.reel-card--ghost)'));
+    const firstGroup = reelsTrack.querySelector('.reels-group');
+    const cards = Array.from(reelsTrack.querySelectorAll('.reels-group:not([aria-hidden]) .reel-card'));
 
     let dragging = false;
     let dragMoved = false;
     let touching = false;
     let lastInteraction = 0;
-    let direction = 1;
+    let wrapping = false;
     let raf = null;
+
+    function wrapScroll() {
+      if (wrapping) return;
+      const groupWidth = firstGroup.getBoundingClientRect().width;
+      if (groupWidth <= 0) return;
+      if (reelsTrack.scrollLeft >= groupWidth) {
+        wrapping = true;
+        reelsTrack.scrollLeft -= groupWidth;
+        wrapping = false;
+      } else if (reelsTrack.scrollLeft < 0) {
+        wrapping = true;
+        reelsTrack.scrollLeft += groupWidth;
+        wrapping = false;
+      }
+    }
+    reelsTrack.addEventListener('scroll', wrapScroll, { passive: true });
 
     function anyPlaying() {
       return cards.some((card) => !card.querySelector('video').paused);
@@ -324,12 +341,7 @@
     function reelsStep() {
       const paused = dragging || touching || anyPlaying() || reduceMotion || (Date.now() - lastInteraction < 900);
       if (!paused) {
-        const maxScroll = reelsTrack.scrollWidth - reelsTrack.clientWidth;
-        if (maxScroll > 0) {
-          reelsTrack.scrollLeft += 0.5 * direction;
-          if (reelsTrack.scrollLeft >= maxScroll - 1) direction = -1;
-          if (reelsTrack.scrollLeft <= 1) direction = 1;
-        }
+        reelsTrack.scrollLeft += 0.5;
       }
       raf = requestAnimationFrame(reelsStep);
     }
