@@ -346,9 +346,47 @@ h1, h2, h3, h4 {
   pointer-events: none;
 }
 .hero .container { position: relative; z-index: 2; }
-.hero__content { max-width: 780px; }
+.hero__content {
+  max-width: 780px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero__logo-card {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: clamp(14px, 3vw, 22px) clamp(24px, 5vw, 40px);
+  margin-bottom: 32px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.55);
+}
+.hero__logo { display: block; height: clamp(46px, 8vw, 72px); width: auto; }
+.hero__logo-shine {
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.9) 50%, transparent 100%);
+  transform: skewX(-18deg);
+  animation: heroLogoShine 4.5s ease-in-out infinite;
+}
+@keyframes heroLogoShine {
+  0% { left: -60%; }
+  32% { left: 130%; }
+  100% { left: 130%; }
+}
+
 .hero__title {
   font-size: clamp(2.4rem, 6vw, 4.4rem);
+  line-height: 1.04;
   margin-bottom: 26px;
 }
 .hero__title .line { display: block; }
