@@ -407,6 +407,27 @@ h1, h2, h3, h4 {
   margin-bottom: 26px;
 }
 .hero__title .line { display: block; }
+.hero__stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 8px;
+  margin: 0 0 32px;
+  font-size: 0.9rem;
+  color: var(--text-on-ink-dim);
+}
+.hero__stats li:not(:last-child)::after {
+  content: '•';
+  margin: 0 14px;
+  color: var(--orange-soft);
+  opacity: 0.7;
+}
+.hero__stats strong {
+  color: var(--text-on-ink);
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
 .hero__lede {
   font-size: clamp(1.08rem, 1.8vw, 1.35rem);
   color: var(--text-on-ink-dim);
