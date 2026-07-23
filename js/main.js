@@ -243,6 +243,7 @@
     const cards = Array.from(reelsTrack.querySelectorAll('.reel-card:not(.reel-card--ghost)'));
 
     let dragging = false;
+    let dragMoved = false;
     let touching = false;
     let lastInteraction = 0;
     let direction = 1;
@@ -256,7 +257,8 @@
       const video = card.querySelector('video');
       const playBtn = card.querySelector('.reel-card__play');
 
-      playBtn.addEventListener('click', () => {
+      card.addEventListener('click', () => {
+        if (dragMoved) return;
         if (video.paused) {
           cards.forEach((other) => {
             if (other !== card) {
@@ -280,22 +282,26 @@
         card.classList.remove('is-playing');
         playBtn.setAttribute('aria-label', 'Reproduzir vídeo de portfólio da DOMT');
         lastInteraction = Date.now();
+        video.currentTime = 0;
       });
       video.addEventListener('ended', () => {
         card.classList.remove('is-playing');
         playBtn.setAttribute('aria-label', 'Reproduzir vídeo de portfólio da DOMT');
         lastInteraction = Date.now();
+        video.currentTime = 0;
       });
     });
 
     reelsTrack.addEventListener('pointerdown', (e) => {
       if (e.pointerType !== 'mouse') return;
       dragging = true;
+      dragMoved = false;
       reelsTrack.classList.add('is-dragging');
       const startX = e.clientX;
       const startScroll = reelsTrack.scrollLeft;
 
       const onMove = (ev) => {
+        if (Math.abs(ev.clientX - startX) > 5) dragMoved = true;
         reelsTrack.scrollLeft = startScroll - (ev.clientX - startX);
       };
       const onUp = () => {
@@ -311,7 +317,9 @@
 
     reelsTrack.addEventListener('touchstart', () => { touching = true; }, { passive: true });
     reelsTrack.addEventListener('touchend', () => { touching = false; lastInteraction = Date.now(); }, { passive: true });
-    reelsTrack.addEventListener('wheel', () => { lastInteraction = Date.now(); }, { passive: true });
+    reelsTrack.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) lastInteraction = Date.now();
+    }, { passive: true });
 
     function reelsStep() {
       const paused = dragging || touching || anyPlaying() || reduceMotion || (Date.now() - lastInteraction < 900);

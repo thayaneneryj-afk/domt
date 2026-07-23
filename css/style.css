@@ -563,7 +563,7 @@ h1, h2, h3, h4 {
 }
 
 /* ---------------------------------- Portfólio em vídeo (reels) ------------------ */
-.reels-section { overflow: hidden; }
+.reels-section { overflow: hidden; padding-top: clamp(28px, 5vw, 56px); }
 .reels-wrap {
   width: 100vw;
   position: relative;
@@ -616,6 +616,14 @@ h1, h2, h3, h4 {
   object-fit: cover;
   display: block;
   background: var(--ink-2);
+  transform-origin: center;
+}
+.reel-card.is-playing .reel-card__video {
+  animation: reelVideoZoom 7s ease-in-out infinite alternate;
+}
+@keyframes reelVideoZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.07); }
 }
 .reel-card__play {
   position: absolute;
@@ -637,16 +645,15 @@ h1, h2, h3, h4 {
 .reel-card__play svg { width: 20px; height: 20px; }
 .reel-card__play .icon-play { margin-left: 2px; }
 .reel-card__play .icon-pause { display: none; }
+.reel-card:not(.reel-card--ghost) { cursor: pointer; }
 .reel-card:hover .reel-card__play {
   transform: scale(1.08);
   background: var(--orange);
   border-color: transparent;
 }
 .reel-card.is-playing .reel-card__play {
-  opacity: 0.8;
-  background: rgba(10, 7, 5, 0.55);
+  opacity: 0;
 }
-.reel-card.is-playing .reel-card__play:hover,
 .reel-card.is-playing .reel-card__play:focus-visible {
   opacity: 1;
   background: var(--orange);
