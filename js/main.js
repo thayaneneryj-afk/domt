@@ -67,7 +67,7 @@
   }
 
   /* ------------------------------- Reveal on scroll ----------------------------- */
-  const revealEls = Array.from(document.querySelectorAll('.reveal'));
+  const revealEls = Array.from(document.querySelectorAll('.reveal, .line-reveal'));
   if (revealEls.length && 'IntersectionObserver' in window && !reduceMotion) {
     const revealer = new IntersectionObserver(
       (entries, obs) => {
@@ -83,6 +83,34 @@
     revealEls.forEach((el) => revealer.observe(el));
   } else {
     revealEls.forEach((el) => el.classList.add('is-visible'));
+  }
+
+  /* ------------------------------- Parallax sutil (seção crença) ---------------- */
+  const crencaHero = document.querySelector('.crenca-hero');
+  const crencaImg = document.getElementById('crencaHeroImg');
+  if (crencaHero && crencaImg && !reduceMotion) {
+    let crencaTicking = false;
+    const updateCrencaParallax = () => {
+      const rect = crencaHero.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      const center = rect.top + rect.height / 2 - vh / 2;
+      const range = vh / 2 + rect.height / 2;
+      const progress = Math.max(-1, Math.min(1, center / range));
+      crencaImg.style.transform = `translateY(${(progress * -22).toFixed(2)}px)`;
+      crencaTicking = false;
+    };
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!crencaTicking) {
+          crencaTicking = true;
+          requestAnimationFrame(updateCrencaParallax);
+        }
+      },
+      { passive: true }
+    );
+    window.addEventListener('resize', updateCrencaParallax);
+    updateCrencaParallax();
   }
 
   /* ------------------------------- Hero network animation ----------------------- */

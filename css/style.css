@@ -174,35 +174,58 @@ h1, h2, h3, h4 {
 }
 .section--crenca {
   background: var(--orange);
-  color: var(--ink);
+  color: var(--white);
   padding-top: 0;
   overflow: hidden;
 }
-.section--crenca .section-lede { color: rgba(28, 19, 11, 0.72); }
+.section--crenca .section-lede { color: rgba(251, 248, 243, 0.82); }
 .section--crenca .belief-item h4 { color: var(--text-on-ink); }
 
-.crenca-banner {
-  max-width: var(--container);
-  margin-inline: auto;
-  padding-left: var(--gutter);
-  padding-right: var(--gutter);
-  padding-top: clamp(28px, 4vw, 48px);
-  margin-bottom: clamp(32px, 5vw, 56px);
+.crenca-hero {
+  position: relative;
+  width: 100vw;
+  left: 50%;
+  margin-left: -50vw;
+  min-height: clamp(460px, 58vw, 680px);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: var(--orange);
 }
-.crenca-banner img {
+.crenca-hero__img {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: clamp(140px, 15vw, 200px);
-  border-radius: var(--radius-lg);
-  object-fit: cover;
-  object-position: 50% 78%;
-  display: block;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 96%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 96%);
+  height: 100%;
+  object-fit: contain;
+  object-position: center center;
+  will-change: transform;
 }
+.crenca-hero__gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(20, 10, 5, 0) 0%,
+    rgba(20, 10, 5, 0) 38%,
+    rgba(16, 8, 4, 0.55) 64%,
+    rgba(12, 6, 3, 0.88) 84%,
+    var(--orange) 100%
+  );
+  pointer-events: none;
+}
+.crenca-hero__content {
+  position: relative;
+  z-index: 1;
+  padding-bottom: clamp(36px, 6vw, 64px);
+  padding-top: clamp(120px, 16vw, 200px);
+}
+.crenca-hero__content .section-head { margin-bottom: 0; }
 
 .crenca-emphasis {
   font-style: italic;
   font-weight: 500;
+  color: var(--orange-soft);
 }
 
 /* Ambient fabric texture (from the DOMT brand materials) */
@@ -1290,23 +1313,53 @@ h1, h2, h3, h4 {
 
 /* ---------------------------------- Crença / Belief grid --------------------------- */
 .belief-grid {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1px;
-  background: var(--line-on-ink);
-  border: 1px solid var(--line-on-ink);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
+  gap: 16px;
   margin-top: 44px;
 }
 @media (min-width: 640px) { .belief-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1080px) { .belief-grid { grid-template-columns: repeat(5, 1fr); } }
-.belief-item {
+@media (min-width: 1080px) { .belief-grid { grid-template-columns: repeat(5, 1fr); gap: 20px; } }
+
+.belief-grid__line {
+  display: none;
+}
+@media (min-width: 1080px) {
+  .belief-grid__line {
+    display: block;
+    position: absolute;
+    left: 47px;
+    right: 47px;
+    top: 45px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 122, 61, 0.55) 12%, rgba(255, 122, 61, 0.55) 88%, transparent);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 900ms var(--ease);
+    z-index: 0;
+  }
+  .belief-grid.is-visible .belief-grid__line { transform: scaleX(1); }
+}
+
+.belief-grid .belief-item {
+  position: relative;
+  z-index: 1;
   background: var(--ink-2);
+  border: 1px solid var(--line-on-ink);
+  border-radius: var(--radius-md);
   padding: 26px 22px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  transition: opacity 420ms var(--ease), transform 380ms var(--ease), box-shadow 380ms var(--ease), border-color 380ms var(--ease);
+}
+@media (hover: hover) {
+  .belief-grid .belief-item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 22px 44px -18px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 122, 61, 0.4);
+    border-color: rgba(255, 122, 61, 0.55);
+  }
 }
 .belief-item__icon {
   width: 38px; height: 38px;
