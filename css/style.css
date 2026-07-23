@@ -703,6 +703,11 @@ h1, h2, h3, h4 {
   display: flex;
   width: max-content;
   animation: marqueeScroll 20s linear infinite;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 @media (hover: hover) {
   .logos-marquee-section:hover .logos-marquee__track { animation-play-state: paused; }
@@ -715,6 +720,8 @@ h1, h2, h3, h4 {
   margin: 0 26px;
   opacity: 0.55;
   transition: opacity 300ms ease, transform 300ms ease;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 .logo-chip img {
   display: block;
@@ -722,6 +729,8 @@ h1, h2, h3, h4 {
   width: auto;
   max-width: 150px;
   object-fit: contain;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 /* Nem toda logo tem o mesmo "peso" visual na mesma altura de caixa —
    ajuste fino por marca para que todas leiam no mesmo tamanho aparente. */
