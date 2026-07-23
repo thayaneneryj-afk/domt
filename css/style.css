@@ -348,12 +348,29 @@ h1, h2, h3, h4 {
   align-items: center;
   padding-top: calc(var(--header-h) + 40px);
   padding-bottom: 64px;
-  background-image: radial-gradient(ellipse 90% 60% at 50% -10%, rgba(122, 74, 38, 0.16), transparent 60%), url(../assets/texture-dark.jpg);
-  background-repeat: no-repeat, repeat;
-  background-size: cover, 620px auto;
-  background-blend-mode: normal, overlay;
   background-color: var(--ink);
   overflow: hidden;
+}
+.hero__aurora {
+  position: absolute;
+  inset: -15%;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 20% 28%, rgba(249, 73, 1, 0.65), transparent 42%),
+    radial-gradient(circle at 82% 18%, rgba(255, 122, 61, 0.5), transparent 46%),
+    radial-gradient(circle at 50% 85%, rgba(249, 73, 1, 0.45), transparent 48%),
+    radial-gradient(circle at 85% 75%, rgba(122, 74, 38, 0.5), transparent 45%);
+  background-repeat: no-repeat;
+  background-size: 140% 140%;
+  filter: blur(60px);
+  animation: heroAurora 22s ease-in-out infinite;
+}
+@keyframes heroAurora {
+  0%   { background-position: 0% 0%, 100% 0%, 50% 100%, 100% 100%; }
+  33%  { background-position: 30% 40%, 70% 30%, 30% 70%, 60% 60%; }
+  66%  { background-position: 60% 10%, 20% 60%, 70% 40%, 30% 90%; }
+  100% { background-position: 0% 0%, 100% 0%, 50% 100%, 100% 100%; }
 }
 .hero__canvas-wrap {
   position: absolute;
@@ -364,7 +381,7 @@ h1, h2, h3, h4 {
 .hero__fade {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(10,10,14,0.15) 0%, rgba(10,10,14,0.55) 62%, var(--ink) 100%);
+  background: linear-gradient(180deg, rgba(10,7,5,0.25) 0%, rgba(10,7,5,0.6) 62%, var(--ink) 100%);
   pointer-events: none;
 }
 .hero .container { position: relative; z-index: 2; }
@@ -375,46 +392,6 @@ h1, h2, h3, h4 {
   flex-direction: column;
   align-items: center;
   text-align: center;
-}
-
-.hero__logo-card {
-  position: relative;
-  display: inline-flex;
-  margin-bottom: 32px;
-}
-.hero__logo-masked {
-  position: relative;
-  width: clamp(240px, 32vw, 400px);
-  aspect-ratio: 567 / 315;
-  overflow: hidden;
-  -webkit-mask-image: url(../assets/domt-logo-white.png);
-  mask-image: url(../assets/domt-logo-white.png);
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-position: center;
-  mask-position: center;
-}
-.hero__logo-fill {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-soft) 45%, var(--brown-soft) 100%);
-}
-.hero__logo-shine {
-  position: absolute;
-  top: 0;
-  left: -60%;
-  width: 45%;
-  height: 100%;
-  background: linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.95) 50%, transparent 100%);
-  transform: skewX(-18deg);
-  animation: heroLogoShine 4.5s ease-in-out infinite;
-}
-@keyframes heroLogoShine {
-  0% { left: -60%; }
-  32% { left: 130%; }
-  100% { left: 130%; }
 }
 
 .hero__title {
