@@ -180,7 +180,7 @@ h1, h2, h3, h4 {
   padding: 15px 28px;
   border-radius: 100px;
   transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), background 0.35s var(--ease), color 0.35s var(--ease);
-  white-space: nowrap;
+  text-align: center;
 }
 .btn svg { width: 18px; height: 18px; flex-shrink: 0; transition: transform 0.35s var(--ease); }
 .btn:hover svg { transform: translate(3px, -3px); }
@@ -870,6 +870,200 @@ h1, h2, h3, h4 {
   font-size: 0.85rem;
   color: var(--text-on-ink-dim);
 }
+
+/* ---------------------------------- Crença / Belief grid --------------------------- */
+.belief-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: var(--line-on-ink);
+  border: 1px solid var(--line-on-ink);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-top: 44px;
+}
+@media (min-width: 640px) { .belief-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1080px) { .belief-grid { grid-template-columns: repeat(5, 1fr); } }
+.belief-item {
+  background: var(--ink-2);
+  padding: 26px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.belief-item__icon {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--gradient-brand-soft);
+  color: var(--orange-soft);
+  flex-shrink: 0;
+}
+.belief-item__icon svg { width: 20px; height: 20px; }
+.belief-item h4 { font-size: 0.98rem; font-family: var(--font-display); }
+.belief-item p { font-size: 0.85rem; color: var(--text-on-ink-dim); }
+
+/* ---------------------------------- Pillar service cards --------------------------- */
+.services-grid--pillars { grid-template-columns: 1fr; }
+@media (min-width: 640px) { .services-grid--pillars { grid-template-columns: repeat(3, 1fr); } }
+.service-card--a { border-top: 3px solid var(--orange); }
+.service-card--b { border-top: 3px solid var(--brown); }
+.service-card--c { border-top: 3px solid var(--text-on-ink-dim); }
+.service-card__tagline {
+  font-size: 0.85rem;
+  color: var(--brown-soft);
+  font-weight: 600;
+  margin-bottom: 14px;
+  display: block;
+}
+.service-card__tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0 24px;
+}
+.service-card__tag-row span {
+  font-size: 0.76rem;
+  padding: 5px 12px;
+  border-radius: 100px;
+  background: var(--ink-3);
+  border: 1px solid var(--line-on-ink);
+  color: var(--text-on-ink-dim);
+}
+.service-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--orange-soft);
+}
+.service-card__cta svg { width: 16px; height: 16px; transition: transform 0.3s var(--ease); }
+.service-card__cta:hover svg { transform: translate(3px, -3px); }
+
+/* ---------------------------------- Momento (self-identification) ------------------ */
+.momento-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1px;
+  background: rgba(20, 20, 26, 0.1);
+  border: 1px solid rgba(20, 20, 26, 0.1);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+@media (min-width: 760px) { .momento-grid { grid-template-columns: repeat(2, 1fr); } }
+.momento-card {
+  background: var(--paper);
+  padding: 30px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.momento-card__need {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--text-on-paper);
+}
+.momento-card__arrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-on-paper-dim);
+  font-size: 0.85rem;
+}
+.momento-card__arrow svg { width: 16px; height: 16px; color: var(--orange); }
+.momento-card__solution {
+  display: inline-flex;
+  align-self: flex-start;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 9px 18px;
+  border-radius: 100px;
+  background: var(--gradient-brand);
+  color: var(--white);
+}
+.momento-cta { margin-top: 44px; text-align: center; }
+
+/* ---------------------------------- Combinações ------------------------------------ */
+.combo-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-top: 60px;
+}
+@media (min-width: 860px) { .combo-grid { grid-template-columns: repeat(3, 1fr); } }
+.combo-card {
+  background: var(--ink-2);
+  border: 1px solid var(--line-on-ink);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.combo-card__parts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--text-on-ink-dim);
+}
+.combo-card__parts .plus { color: var(--orange-soft); font-weight: 700; }
+.combo-card__name {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+}
+.combo-card__desc { color: var(--text-on-ink-dim); font-size: 0.92rem; }
+
+/* ---------------------------------- Start Reels pricing ----------------------------- */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 760px) { .pricing-grid { grid-template-columns: repeat(3, 1fr); } }
+.plan-card {
+  background: var(--white);
+  border: 1px solid rgba(20, 20, 26, 0.12);
+  border-radius: var(--radius-md);
+  padding: 32px 28px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.plan-card__label {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+  color: var(--text-on-paper-dim);
+}
+.plan-card__price {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-on-paper);
+}
+.plan-card__price span { font-size: 0.9rem; font-weight: 500; color: var(--text-on-paper-dim); }
+.reels-info {
+  margin-top: 44px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 30px;
+  justify-content: center;
+}
+.reels-info span {
+  font-size: 0.88rem;
+  color: var(--text-on-paper-dim);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.reels-info svg { width: 16px; height: 16px; color: var(--orange); flex-shrink: 0; }
 
 /* ---------------------------------- Reveal animation ------------------------------ */
 .reveal {
