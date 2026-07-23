@@ -523,21 +523,12 @@ h1, h2, h3, h4 {
   border: 0;
 }
 .typewriter-strip {
-  position: relative;
-  width: 100vw;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-  flex-shrink: 0;
-  height: 46px;
-  background: var(--white);
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 32px;
-  padding: 0 20px;
+  width: 100%;
+  margin-bottom: 28px;
+  min-height: 1.4em;
 }
 .typewriter-strip__line {
   display: flex;
@@ -548,9 +539,9 @@ h1, h2, h3, h4 {
 .typewriter-strip__text {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 0.82rem;
-  letter-spacing: 0.01em;
-  color: var(--text-on-paper);
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  color: var(--white);
   white-space: nowrap;
   overflow: hidden;
 }
@@ -568,8 +559,7 @@ h1, h2, h3, h4 {
   50% { opacity: 0; }
 }
 @media (min-width: 760px) {
-  .typewriter-strip { height: 50px; }
-  .typewriter-strip__text { font-size: 0.95rem; }
+  .typewriter-strip__text { font-size: 1.05rem; }
 }
 
 /* ---------------------------------- Portfólio em vídeo (reels) ------------------ */
