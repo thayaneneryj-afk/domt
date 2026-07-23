@@ -86,7 +86,7 @@
   }
 
   /* ------------------------------- Parallax sutil (seção crença) ---------------- */
-  const crencaHero = document.querySelector('.crenca-hero');
+  const crencaHero = document.querySelector('.crenca-banner');
   const crencaImg = document.getElementById('crencaHeroImg');
   if (crencaHero && crencaImg && !reduceMotion) {
     let crencaTicking = false;
