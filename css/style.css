@@ -704,7 +704,9 @@ h1, h2, h3, h4 {
   width: max-content;
   animation: marqueeScroll 20s linear infinite;
 }
-.logos-marquee-section:hover .logos-marquee__track { animation-play-state: paused; }
+@media (hover: hover) {
+  .logos-marquee-section:hover .logos-marquee__track { animation-play-state: paused; }
+}
 .logos-marquee__group { display: flex; align-items: center; flex-shrink: 0; }
 .logo-chip {
   display: inline-flex;
@@ -731,7 +733,8 @@ h1, h2, h3, h4 {
 .logo-chip--pera img,
 .logo-chip--maxhair img { height: 48px; }
 .logo-chip--cassia img,
-.logo-chip--imperio img { height: 42px; }
+.logo-chip--imperio img,
+.logo-chip--jeito-saude img { height: 42px; }
 .logo-chip--moto img,
 .logo-chip--kzl img,
 .logo-chip--sandes-motors img,
@@ -746,7 +749,8 @@ h1, h2, h3, h4 {
   .logo-chip--pera img,
   .logo-chip--maxhair img { height: 60px; }
   .logo-chip--cassia img,
-  .logo-chip--imperio img { height: 54px; }
+  .logo-chip--imperio img,
+  .logo-chip--jeito-saude img { height: 54px; }
   .logo-chip--moto img,
   .logo-chip--kzl img,
   .logo-chip--sandes-motors img,
