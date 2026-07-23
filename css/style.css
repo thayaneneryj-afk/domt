@@ -683,24 +683,22 @@ h1, h2, h3, h4 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  white-space: nowrap;
-  margin: 0 12px;
-  padding: 18px 34px;
-  border: 1px dashed rgba(20, 20, 26, 0.22);
-  border-radius: var(--radius-md);
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 0.85rem;
-  letter-spacing: 0.02em;
-  color: var(--text-on-paper-dim);
-  opacity: 0.65;
-  transition: opacity 300ms ease, color 300ms ease, border-color 300ms ease, transform 300ms ease;
+  margin: 0 30px;
+  opacity: 0.55;
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+.logo-chip img {
+  display: block;
+  height: 30px;
+  width: auto;
+  max-width: 130px;
+  object-fit: contain;
+}
+@media (min-width: 760px) {
+  .logo-chip img { height: 38px; max-width: 160px; }
 }
 .logo-chip:hover {
   opacity: 1;
-  color: var(--orange);
-  border-color: var(--orange);
-  border-style: solid;
   transform: translateY(-3px);
 }
 
