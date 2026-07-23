@@ -358,23 +358,34 @@ h1, h2, h3, h4 {
 .hero__logo-card {
   position: relative;
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--white);
-  border-radius: var(--radius-lg);
-  padding: clamp(14px, 3vw, 22px) clamp(24px, 5vw, 40px);
   margin-bottom: 32px;
-  overflow: hidden;
-  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.55);
 }
-.hero__logo { display: block; height: clamp(46px, 8vw, 72px); width: auto; }
+.hero__logo-masked {
+  position: relative;
+  width: clamp(240px, 32vw, 400px);
+  aspect-ratio: 567 / 315;
+  overflow: hidden;
+  -webkit-mask-image: url(../assets/domt-logo-white.png);
+  mask-image: url(../assets/domt-logo-white.png);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+.hero__logo-fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--orange) 0%, var(--orange-soft) 45%, var(--brown-soft) 100%);
+}
 .hero__logo-shine {
   position: absolute;
   top: 0;
   left: -60%;
   width: 45%;
   height: 100%;
-  background: linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.9) 50%, transparent 100%);
+  background: linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.95) 50%, transparent 100%);
   transform: skewX(-18deg);
   animation: heroLogoShine 4.5s ease-in-out infinite;
 }
