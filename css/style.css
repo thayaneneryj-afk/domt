@@ -635,13 +635,26 @@ h1, h2, h3, h4 {
   color: var(--white);
   transition: opacity 250ms ease, transform 250ms ease, background 250ms ease, border-color 250ms ease;
 }
-.reel-card__play svg { width: 20px; height: 20px; margin-left: 2px; }
+.reel-card__play svg { width: 20px; height: 20px; }
+.reel-card__play .icon-play { margin-left: 2px; }
+.reel-card__play .icon-pause { display: none; }
 .reel-card:hover .reel-card__play {
   transform: scale(1.08);
   background: var(--orange);
   border-color: transparent;
 }
-.reel-card.is-playing .reel-card__play { opacity: 0; pointer-events: none; }
+.reel-card.is-playing .reel-card__play {
+  opacity: 0.8;
+  background: rgba(10, 7, 5, 0.55);
+}
+.reel-card.is-playing .reel-card__play:hover,
+.reel-card.is-playing .reel-card__play:focus-visible {
+  opacity: 1;
+  background: var(--orange);
+  border-color: transparent;
+}
+.reel-card.is-playing .reel-card__play .icon-play { display: none; }
+.reel-card.is-playing .reel-card__play .icon-pause { display: block; }
 
 .reel-card--ghost { pointer-events: none; }
 .reel-card--ghost img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.9; }

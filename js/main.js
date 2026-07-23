@@ -192,9 +192,7 @@
   const reelsTrack = document.getElementById('reelsTrack');
   if (reelsTrack) {
     const cards = Array.from(reelsTrack.querySelectorAll('.reel-card:not(.reel-card--ghost)'));
-    const hoverCapable = window.matchMedia('(hover: hover)').matches;
 
-    let hovering = false;
     let dragging = false;
     let touching = false;
     let lastInteraction = 0;
@@ -224,15 +222,22 @@
         }
       });
 
-      video.addEventListener('play', () => card.classList.add('is-playing'));
-      video.addEventListener('pause', () => card.classList.remove('is-playing'));
-      video.addEventListener('ended', () => card.classList.remove('is-playing'));
+      video.addEventListener('play', () => {
+        card.classList.add('is-playing');
+        playBtn.setAttribute('aria-label', 'Pausar vídeo de portfólio da DOMT');
+        lastInteraction = Date.now();
+      });
+      video.addEventListener('pause', () => {
+        card.classList.remove('is-playing');
+        playBtn.setAttribute('aria-label', 'Reproduzir vídeo de portfólio da DOMT');
+        lastInteraction = Date.now();
+      });
+      video.addEventListener('ended', () => {
+        card.classList.remove('is-playing');
+        playBtn.setAttribute('aria-label', 'Reproduzir vídeo de portfólio da DOMT');
+        lastInteraction = Date.now();
+      });
     });
-
-    if (hoverCapable) {
-      reelsTrack.addEventListener('pointerenter', () => { hovering = true; });
-      reelsTrack.addEventListener('pointerleave', () => { hovering = false; });
-    }
 
     reelsTrack.addEventListener('pointerdown', (e) => {
       if (e.pointerType !== 'mouse') return;
@@ -260,7 +265,7 @@
     reelsTrack.addEventListener('wheel', () => { lastInteraction = Date.now(); }, { passive: true });
 
     function reelsStep() {
-      const paused = hovering || dragging || touching || anyPlaying() || reduceMotion || (Date.now() - lastInteraction < 900);
+      const paused = dragging || touching || anyPlaying() || reduceMotion || (Date.now() - lastInteraction < 900);
       if (!paused) {
         const maxScroll = reelsTrack.scrollWidth - reelsTrack.clientWidth;
         if (maxScroll > 0) {
