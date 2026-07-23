@@ -188,6 +188,55 @@
     }
   }
 
+  /* ------------------------------- Typewriter (faixa de autoridade) ------------- */
+  const typewriterEl = document.getElementById('typewriterText');
+  if (typewriterEl) {
+    const phrases = [
+      '+9 anos de experiência',
+      '+50 marcas atendidas',
+      '+1.000 projetos desenvolvidos',
+      'Clientes no Brasil e Estados Unidos',
+    ];
+
+    if (reduceMotion) {
+      typewriterEl.textContent = phrases.join('   •   ');
+    } else {
+      let phraseIndex = 0;
+      let charIndex = 0;
+      let deleting = false;
+
+      const typewriterTick = () => {
+        const current = phrases[phraseIndex];
+        let delay;
+
+        if (!deleting) {
+          charIndex++;
+          typewriterEl.textContent = current.slice(0, charIndex);
+          if (charIndex === current.length) {
+            deleting = true;
+            delay = 1900;
+          } else {
+            delay = 45 + Math.random() * 35;
+          }
+        } else {
+          charIndex--;
+          typewriterEl.textContent = current.slice(0, charIndex);
+          if (charIndex === 0) {
+            deleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            delay = 450;
+          } else {
+            delay = 22 + Math.random() * 18;
+          }
+        }
+
+        setTimeout(typewriterTick, delay);
+      };
+
+      setTimeout(typewriterTick, 400);
+    }
+  }
+
   /* ------------------------------- Reels carousel (portfólio em vídeo) ----------- */
   const reelsTrack = document.getElementById('reelsTrack');
   if (reelsTrack) {
