@@ -113,17 +113,67 @@
     updateCrencaParallax();
   }
 
-  /* ------------------------------- Serviços em movimento (nuvem flutuante) ------- */
-  document.querySelectorAll('.services-float__pill').forEach((pill) => {
-    pill.addEventListener('click', () => {
-      pill.classList.remove('is-lit');
-      void pill.offsetWidth;
-      pill.classList.add('is-lit');
+  /* ------------------------------- Ecossistema de serviços (rede interativa) ----- */
+  const serviceNetwork = document.getElementById('serviceNetwork');
+  if (serviceNetwork) {
+    const serviceNodes = Array.from(serviceNetwork.querySelectorAll('.service-node[data-service]'));
+    const serviceLines = Array.from(serviceNetwork.querySelectorAll('[data-line]'));
+    const panelWrap = document.getElementById('servicePanelWrap');
+    const panels = panelWrap ? Array.from(panelWrap.querySelectorAll('.service-panel[data-panel]')) : [];
+    const hint = document.getElementById('serviceNetworkHint');
+    const hoverCapable = window.matchMedia('(hover: hover)').matches;
+    let locked = null;
+
+    function setVisual(key) {
+      serviceNodes.forEach((n) => n.classList.toggle('is-active', n.dataset.service === key));
+      serviceLines.forEach((l) => l.classList.toggle('is-active', l.dataset.line === key));
+      serviceNetwork.classList.toggle('has-active', !!key);
+    }
+
+    function openPanel(key) {
+      panels.forEach((p) => {
+        const match = p.dataset.panel === key;
+        if (match) p.hidden = false;
+      });
+      // força reflow antes de adicionar a classe, garantindo a transição de entrada
+      void panelWrap.offsetWidth;
+      panels.forEach((p) => p.classList.toggle('is-visible', p.dataset.panel === key));
+      serviceNodes.forEach((n) => n.setAttribute('aria-expanded', String(n.dataset.service === key)));
+      if (hint) hint.style.display = 'none';
+      panels.forEach((p) => {
+        if (p.dataset.panel !== key) {
+          window.setTimeout(() => {
+            if (!p.classList.contains('is-visible')) p.hidden = true;
+          }, 600);
+        }
+      });
+    }
+
+    serviceNodes.forEach((node) => {
+      const key = node.dataset.service;
+
+      if (hoverCapable) {
+        node.addEventListener('mouseenter', () => setVisual(key));
+        node.addEventListener('mouseleave', () => setVisual(locked));
+        node.addEventListener('click', () => {
+          locked = key;
+          setVisual(key);
+          openPanel(key);
+        });
+        node.addEventListener('focus', () => setVisual(key));
+        node.addEventListener('blur', () => setVisual(locked));
+      } else {
+        node.addEventListener('click', () => {
+          if (locked === key) {
+            openPanel(key);
+          } else {
+            locked = key;
+            setVisual(key);
+          }
+        });
+      }
     });
-    pill.addEventListener('animationend', (e) => {
-      if (e.animationName === 'servicesPillFlash') pill.classList.remove('is-lit');
-    });
-  });
+  }
 
   /* ------------------------------- Hero network animation ----------------------- */
   const canvas = document.getElementById('hero-network');
