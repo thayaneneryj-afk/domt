@@ -113,6 +113,18 @@
     updateCrencaParallax();
   }
 
+  /* ------------------------------- Serviços em movimento (nuvem flutuante) ------- */
+  document.querySelectorAll('.services-float__pill').forEach((pill) => {
+    pill.addEventListener('click', () => {
+      pill.classList.remove('is-lit');
+      void pill.offsetWidth;
+      pill.classList.add('is-lit');
+    });
+    pill.addEventListener('animationend', (e) => {
+      if (e.animationName === 'servicesPillFlash') pill.classList.remove('is-lit');
+    });
+  });
+
   /* ------------------------------- Hero network animation ----------------------- */
   const canvas = document.getElementById('hero-network');
   if (canvas) {
