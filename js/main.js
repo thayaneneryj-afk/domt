@@ -380,8 +380,40 @@
       window.addEventListener('pointerup', onUp);
     });
 
-    reelsTrack.addEventListener('touchstart', () => { touching = true; }, { passive: true });
-    reelsTrack.addEventListener('touchend', () => { touching = false; lastInteraction = Date.now(); }, { passive: true });
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchHorizontal = false;
+    reelsTrack.addEventListener(
+      'touchstart',
+      (e) => {
+        touching = true;
+        touchHorizontal = false;
+        const t = e.touches[0];
+        touchStartX = t.clientX;
+        touchStartY = t.clientY;
+      },
+      { passive: true }
+    );
+    reelsTrack.addEventListener(
+      'touchmove',
+      (e) => {
+        const t = e.touches[0];
+        const dx = Math.abs(t.clientX - touchStartX);
+        const dy = Math.abs(t.clientY - touchStartY);
+        if (dx > dy && dx > 6) touchHorizontal = true;
+      },
+      { passive: true }
+    );
+    const endTouch = () => {
+      touching = false;
+      // só conta como interação com o carrossel (pausando o auto-scroll) se o
+      // gesto foi de fato horizontal — um scroll vertical da página que só
+      // passa por cima do carrossel não deve travar o movimento automático.
+      if (touchHorizontal) lastInteraction = Date.now();
+      touchHorizontal = false;
+    };
+    reelsTrack.addEventListener('touchend', endTouch, { passive: true });
+    reelsTrack.addEventListener('touchcancel', endTouch, { passive: true });
     reelsTrack.addEventListener('wheel', (e) => {
       if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) lastInteraction = Date.now();
     }, { passive: true });
