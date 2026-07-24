@@ -1361,10 +1361,10 @@ h1, h2, h3, h4 {
 
 .service-network {
   position: relative;
-  margin-top: clamp(48px, 7vw, 88px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 100%;
+  max-width: 720px;
+  margin: clamp(40px, 7vw, 88px) auto 0;
+  height: clamp(280px, 62vw, 560px);
 }
 .service-network__lines {
   position: absolute;
@@ -1377,7 +1377,7 @@ h1, h2, h3, h4 {
 .service-network__line {
   fill: none;
   stroke: var(--line-on-ink);
-  stroke-width: 0.28;
+  stroke-width: 0.22;
   stroke-dasharray: 0.6 1.4;
   stroke-linecap: round;
   vector-effect: non-scaling-stroke;
@@ -1386,7 +1386,7 @@ h1, h2, h3, h4 {
 }
 .service-network__line.is-active {
   stroke: var(--orange);
-  stroke-width: 0.5;
+  stroke-width: 0.4;
   stroke-dasharray: none;
   animation: none;
   opacity: 1;
@@ -1396,57 +1396,64 @@ h1, h2, h3, h4 {
   50% { opacity: 0.7; }
 }
 
-/* ---- núcleo (DOMT) ---- */
+/* ---- núcleo (DOMT) — tipográfico, sem ícone e sem card ---- */
 .service-node--core {
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 2;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 40px;
+  justify-content: center;
 }
-.service-node__core-mark-wrap {
-  position: relative;
-  width: 76px;
-  height: 76px;
-}
-.service-node__core-mark {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  z-index: 1;
-  box-shadow: 0 0 0 1px rgba(249, 122, 61, 0.3), 0 18px 50px -12px rgba(249, 73, 1, 0.6);
-  animation: serviceCorePulse 4.5s ease-in-out infinite;
-}
-.service-node__core-ring {
+.service-node--core::before {
+  content: '';
   position: absolute;
-  inset: -14px;
+  inset: clamp(-44px, -8vw, -26px);
   border-radius: 50%;
-  border: 1px dashed rgba(255, 122, 61, 0.25);
+  background: radial-gradient(circle, rgba(249, 73, 1, 0.4), transparent 72%);
+  filter: blur(4px);
+  z-index: -1;
+  animation: serviceCoreGlow 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+.service-network.has-active .service-node--core::before { animation-duration: 2.4s; }
+@keyframes serviceCoreGlow {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 0.85; }
 }
 .service-node__core-label {
   font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 0.8rem;
-  letter-spacing: 0.14em;
-  color: var(--text-on-ink-dim);
+  font-weight: 900;
+  font-size: clamp(1.15rem, 5.2vw, 2.1rem);
+  letter-spacing: 0.02em;
+  color: var(--text-on-ink);
+  text-shadow: 0 0 20px rgba(249, 73, 1, 0.3);
+  transition: text-shadow 400ms ease;
+  white-space: nowrap;
 }
-@keyframes serviceCorePulse {
-  0%, 100% { box-shadow: 0 0 0 1px rgba(249, 122, 61, 0.3), 0 18px 50px -12px rgba(249, 73, 1, 0.6); }
-  50% { box-shadow: 0 0 0 1px rgba(249, 122, 61, 0.45), 0 18px 66px -8px rgba(249, 73, 1, 0.85); }
+.service-network.has-active .service-node__core-label {
+  text-shadow: 0 0 30px rgba(249, 73, 1, 0.6), 0 0 56px rgba(249, 73, 1, 0.3);
 }
 
-/* ---- nós de serviço ---- */
+/* ---- nós de serviço: compactos, escaláveis, nunca viram card grande ---- */
+.service-node[data-service] {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.service-node--social { top: 13%; left: 20%; animation: serviceFloatY 6.5s ease-in-out infinite; }
+.service-node--click { top: 21%; left: 78%; animation: serviceFloatX 7.5s ease-in-out infinite; animation-delay: 0.6s; }
+.service-node--trafego { top: 82%; left: 46%; animation: serviceFloatScale 8.5s ease-in-out infinite; animation-delay: 1.2s; }
+
 .service-node {
-  position: relative;
   z-index: 1;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 14px 20px;
+  gap: clamp(6px, 1.6vw, 12px);
+  width: max-content;
+  max-width: clamp(112px, 30vw, 250px);
+  padding: clamp(7px, 1.8vw, 14px) clamp(9px, 2.6vw, 20px);
   border-radius: var(--radius-lg);
   border: 1px solid var(--line-on-ink);
   background: rgba(29, 19, 12, 0.6);
@@ -1457,9 +1464,9 @@ h1, h2, h3, h4 {
   transition: transform 500ms ease, border-color 400ms ease, box-shadow 400ms ease, opacity 400ms ease;
 }
 .service-node__icon {
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
+  width: clamp(20px, 5.6vw, 34px);
+  height: clamp(20px, 5.6vw, 34px);
+  border-radius: clamp(6px, 1.6vw, 10px);
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -1468,32 +1475,29 @@ h1, h2, h3, h4 {
   color: var(--orange-soft);
   transition: color 400ms ease;
 }
-.service-node__icon svg { width: 18px; height: 18px; }
-.service-node__text { display: flex; flex-direction: column; gap: 2px; }
+.service-node__icon svg { width: clamp(11px, 3vw, 18px); height: clamp(11px, 3vw, 18px); }
+.service-node__text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
 .service-node__name {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: clamp(0.62rem, 2.6vw, 0.95rem);
+  line-height: 1.2;
   color: var(--text-on-ink);
-  white-space: nowrap;
 }
 .service-node__role {
-  font-size: 0.76rem;
+  font-size: clamp(0.54rem, 2vw, 0.76rem);
+  line-height: 1.25;
   color: var(--text-on-ink-dim);
-  white-space: nowrap;
 }
 .service-node.is-active {
   border-color: rgba(255, 122, 61, 0.55);
   box-shadow: 0 20px 46px -16px rgba(0, 0, 0, 0.6), 0 0 30px -4px rgba(249, 73, 1, 0.4);
-  transform: scale(1.045) translateY(-3px);
+  transform: translate(-50%, -50%) scale(1.06) translateY(-2px);
 }
 .service-node.is-active .service-node__icon { color: var(--orange); }
 .service-network.has-active .service-node:not(.is-active):not(.service-node--core) { opacity: 0.55; }
 
 /* ---- flutuação idle, um movimento distinto por nó ---- */
-.service-node--social { animation: serviceFloatY 6.5s ease-in-out infinite; }
-.service-node--click { animation: serviceFloatX 7.5s ease-in-out infinite; animation-delay: 0.6s; }
-.service-node--trafego { animation: serviceFloatScale 8.5s ease-in-out infinite; animation-delay: 1.2s; }
 @keyframes serviceFloatY {
   0%, 100% { margin-top: 0; }
   50% { margin-top: -7px; }
@@ -1596,47 +1600,6 @@ h1, h2, h3, h4 {
 .service-panel__cta svg { width: 16px; height: 16px; }
 .service-panel__cta:hover { gap: 12px; color: var(--orange); }
 
-/* ---- layout desktop: dispersão orgânica ao redor do núcleo ---- */
-@media (min-width: 900px) {
-  .service-network {
-    display: block;
-    height: clamp(440px, 46vw, 560px);
-    margin-top: clamp(56px, 8vw, 96px);
-  }
-  .service-node--core {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin-bottom: 0;
-  }
-  .service-node[data-service] { position: absolute; transform: translate(-50%, -50%); }
-  .service-node--social { top: 14%; left: 20%; animation: serviceFloatY 6.5s ease-in-out infinite; }
-  .service-node--click { top: 22%; left: 68%; animation: serviceFloatX 7.5s ease-in-out infinite; animation-delay: 0.6s; }
-  .service-node--trafego { top: 72%; left: 34%; animation: serviceFloatScale 8.5s ease-in-out infinite; animation-delay: 1.2s; }
-  .service-node[data-service].is-active { transform: translate(-50%, -50%) scale(1.045) translateY(-3px); }
-}
-
-/* ---- layout mobile: cadeia vertical conectada ---- */
-@media (max-width: 899px) {
-  .service-network__lines { display: none; }
-  .service-network {
-    position: relative;
-    gap: 22px;
-  }
-  .service-network::before {
-    content: '';
-    position: absolute;
-    top: 96px;
-    bottom: 30px;
-    left: 50%;
-    width: 1px;
-    background: var(--line-on-ink);
-    transform: translateX(-50%);
-    z-index: 0;
-  }
-  .service-node[data-service] { width: 100%; max-width: 340px; }
-}
 
 /* ---------------------------------- Pillar service cards --------------------------- */
 .services-grid--pillars { grid-template-columns: 1fr; }
