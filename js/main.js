@@ -294,8 +294,18 @@
     }
     reelsTrack.addEventListener('scroll', wrapScroll, { passive: true });
 
-    function anyPlaying() {
-      return cards.some((card) => !card.querySelector('video').paused);
+    function anyEngaged() {
+      return cards.some((card) => card.classList.contains('is-playing'));
+    }
+
+    function disengage(card) {
+      const video = card.querySelector('video');
+      const playBtn = card.querySelector('.reel-card__play');
+      video.muted = true;
+      video.currentTime = 0;
+      video.play().catch(() => {});
+      card.classList.remove('is-playing');
+      playBtn.setAttribute('aria-label', 'Reproduzir vídeo de portfólio da DOMT');
     }
 
     cards.forEach((card) => {
@@ -304,38 +314,48 @@
 
       card.addEventListener('click', () => {
         if (dragMoved) return;
-        if (video.paused) {
+        const engaged = card.classList.contains('is-playing');
+        if (!engaged) {
           cards.forEach((other) => {
-            if (other !== card) {
-              const otherVideo = other.querySelector('video');
-              if (!otherVideo.paused) otherVideo.pause();
-            }
+            if (other !== card && other.classList.contains('is-playing')) disengage(other);
           });
+          video.currentTime = 0;
           video.muted = false;
           video.play().catch(() => {});
+          card.classList.add('is-playing');
+          playBtn.setAttribute('aria-label', 'Pausar vídeo de portfólio da DOMT');
+          lastInteraction = Date.now();
         } else {
-          video.pause();
+          disengage(card);
+          lastInteraction = Date.now();
         }
       });
-
-      video.addEventListener('play', () => {
-        card.classList.add('is-playing');
-        playBtn.setAttribute('aria-label', 'Pausar vídeo de portfólio da DOMT');
-        lastInteraction = Date.now();
-      });
-      video.addEventListener('pause', () => {
-        card.classList.remove('is-playing');
-        playBtn.setAttribute('aria-label', 'Reproduzir vídeo de portfólio da DOMT');
-        lastInteraction = Date.now();
-        video.currentTime = 0;
-      });
-      video.addEventListener('ended', () => {
-        card.classList.remove('is-playing');
-        playBtn.setAttribute('aria-label', 'Reproduzir vídeo de portfólio da DOMT');
-        lastInteraction = Date.now();
-        video.currentTime = 0;
-      });
     });
+
+    /* Reprodução ambiente: todo vídeo visível toca mudo e em loop,
+       dando movimento ao carrossel assim que a página carrega. O clique
+       assume o controle (áudio, reinício) e some da lista ambiente. */
+    if ('IntersectionObserver' in window && !reduceMotion) {
+      const allCards = Array.from(reelsTrack.querySelectorAll('.reel-card'));
+      const ambientObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            const card = entry.target;
+            if (card.classList.contains('is-playing')) return;
+            const video = card.querySelector('video');
+            if (!video) return;
+            if (entry.isIntersecting) {
+              video.muted = true;
+              video.play().catch(() => {});
+            } else {
+              video.pause();
+            }
+          });
+        },
+        { threshold: 0.3 }
+      );
+      allCards.forEach((card) => ambientObserver.observe(card));
+    }
 
     reelsTrack.addEventListener('pointerdown', (e) => {
       if (e.pointerType !== 'mouse') return;
@@ -367,7 +387,7 @@
     }, { passive: true });
 
     function reelsStep() {
-      const paused = dragging || touching || anyPlaying() || reduceMotion || (Date.now() - lastInteraction < 900);
+      const paused = dragging || touching || anyEngaged() || reduceMotion || (Date.now() - lastInteraction < 900);
       if (!paused) {
         reelsTrack.scrollLeft += 0.5;
       }
