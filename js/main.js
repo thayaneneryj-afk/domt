@@ -155,23 +155,14 @@
       if (hoverCapable) {
         node.addEventListener('mouseenter', () => setVisual(key));
         node.addEventListener('mouseleave', () => setVisual(locked));
-        node.addEventListener('click', () => {
-          locked = key;
-          setVisual(key);
-          openPanel(key);
-        });
         node.addEventListener('focus', () => setVisual(key));
         node.addEventListener('blur', () => setVisual(locked));
-      } else {
-        node.addEventListener('click', () => {
-          if (locked === key) {
-            openPanel(key);
-          } else {
-            locked = key;
-            setVisual(key);
-          }
-        });
       }
+      node.addEventListener('click', () => {
+        locked = key;
+        setVisual(key);
+        openPanel(key);
+      });
     });
   }
 
