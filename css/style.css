@@ -1625,33 +1625,60 @@ h1, h2, h3, h4 {
   font-weight: 600;
 }
 
-/* ---- SocialDOMination: cases em sequência, cada um com seu próprio tratamento ---- */
+/* ---- SocialDOMination: composição editorial em camadas, cada case com sua própria história ---- */
 .proof-cases {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 34px;
   margin-bottom: 20px;
 }
 .proof-case { display: flex; flex-direction: column; }
-.proof-case__img {
+.proof-case--layered { position: relative; }
+
+/* camada base: entrada com fade + leve rotação/escala que se estabiliza */
+.proof-layer.reveal {
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+.proof-layer--main.reveal { opacity: 0; transform: translateY(22px) rotate(5deg) scale(0.95); }
+.proof-layer--main.reveal.is-visible { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
+.proof-layer--accent.reveal { opacity: 0; transform: translateY(18px) rotate(-7deg) scale(0.9); }
+.proof-layer--accent.reveal.is-visible { opacity: 1; transform: translateY(0) rotate(0deg) scale(1); }
+@media (prefers-reduced-motion: reduce) {
+  .proof-layer.reveal, .proof-layer--main.reveal, .proof-layer--accent.reveal { transform: none; }
+}
+
+/* camada de inclinação permanente + paralaxe sutil no scroll (aplicada via JS em --parallax-y) */
+.proof-layer__inner {
+  transform: translateY(var(--parallax-y, 0px)) rotate(var(--tilt, 0deg));
+}
+.proof-layer__inner--float { animation: proofLayerFloat 6.5s ease-in-out infinite; }
+@keyframes proofLayerFloat {
+  0%, 100% { margin-top: 0; }
+  50% { margin-top: -7px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .proof-layer__inner--float { animation: none; }
+}
+
+.proof-layer__img {
   width: 100%;
   display: block;
   border-radius: var(--radius-md);
   border: 1px solid var(--line-on-ink);
-  box-shadow: 0 16px 34px -20px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.65);
 }
-.proof-case__img--tall { max-height: 340px; object-fit: cover; object-position: top; }
-.proof-case__img--wide { object-fit: contain; background: var(--ink); }
+.proof-layer__img--tall { max-height: 340px; object-fit: cover; object-position: top; }
+.proof-layer__img--wide { object-fit: contain; background: var(--ink); }
 
 .proof-case__result {
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-top: 12px;
   padding: 14px 16px;
   border-radius: var(--radius-md);
-  background: var(--ink-3);
-  border-left: 3px solid var(--orange);
+  background: var(--ink);
+  border: 1px solid var(--line-on-ink);
+  box-shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.7);
 }
 .proof-counter {
   font-family: var(--font-display);
@@ -1665,13 +1692,62 @@ h1, h2, h3, h4 {
 .proof-case__result-text span { font-weight: 700; font-size: 0.86rem; color: var(--text-on-ink); }
 .proof-case__result-text small { color: var(--text-on-ink-dim); font-size: 0.78rem; line-height: 1.4; }
 
+.proof-case__result--compact {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 12px 14px;
+}
+.proof-case__result--compact span { font-size: 0.74rem; color: var(--text-on-ink-dim); }
+
 .proof-case__caption {
-  margin-top: 10px;
+  margin-top: 12px;
   font-size: 0.82rem;
   color: var(--text-on-ink-dim);
   line-height: 1.4;
 }
 .proof-case__caption strong { color: var(--orange-soft); }
+
+.proof-case__badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 10px 16px;
+  border-radius: 100px;
+  background: var(--ink);
+  border: 1px solid var(--line-on-ink);
+  box-shadow: 0 16px 32px -14px rgba(0, 0, 0, 0.7);
+  font-size: 0.85rem;
+  color: var(--text-on-ink);
+  white-space: nowrap;
+}
+.proof-case__badge strong { font-family: var(--font-display); font-size: 1.05rem; color: var(--orange); }
+
+/* Case 1 — Cassulinha: card compacto no canto superior direito, sobre a área decorativa da foto */
+.proof-case--cassulinha { padding-top: 20px; padding-right: 16%; }
+.proof-case--cassulinha .proof-layer--accent {
+  position: absolute;
+  top: -14px; right: -4%;
+  width: 40%;
+  z-index: 3;
+}
+
+/* Case 3 — Reel: número em destaque + provas de apoio levemente escalonadas */
+.proof-case--reel .proof-layer--hero { margin-bottom: 14px; }
+.proof-case--reel .proof-case__result--hero {
+  padding: 16px 20px;
+}
+.proof-case--reel .proof-case__result--hero .proof-counter { font-size: clamp(1.9rem, 7vw, 2.4rem); }
+.proof-case--reel .proof-layer--main:nth-of-type(2) .proof-layer__inner { margin-left: -3%; }
+.proof-case--reel .proof-layer--main:last-child .proof-layer__inner { margin-top: -10px; margin-right: -3%; }
+
+/* Case 4 — MANU: badge de resultado sobrepondo o canto superior direito do print */
+.proof-case--manu { padding-top: 30px; padding-right: 6%; }
+.proof-case--manu .proof-layer--accent {
+  position: absolute;
+  top: -30px; right: -6%;
+  z-index: 3;
+}
 
 .proof-case__quote {
   display: block;

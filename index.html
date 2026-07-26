@@ -585,31 +585,71 @@
           </div>
 
           <div class="proof-cases">
-            <div class="proof-case">
-              <img class="proof-case__img" src="assets/proof/social-cassulinha.jpg" alt="Perfil da Cassulinha Cabelos no Instagram: 3.511 publicações, 370 mil seguidores, 1.113 seguindo">
-              <div class="proof-case__result">
-                <strong class="proof-counter" data-count-to="370" data-suffix=" mil">0</strong>
-                <div class="proof-case__result-text">
-                  <span>seguidores no Instagram</span>
-                  <small>Uma marca de beleza que saiu de 10 mil para se tornar a maior do Brasil no segmento.</small>
+            <!-- Case 1: Cassulinha — foto+perfil (camada 1) + resultado (camada 2) -->
+            <div class="proof-case proof-case--layered proof-case--cassulinha">
+              <div class="proof-layer proof-layer--main reveal" style="--stagger:0">
+                <div class="proof-layer__inner" style="--tilt:-2deg" data-parallax="10">
+                  <img class="proof-layer__img" src="assets/proof/social-cassulinha.jpg" alt="Perfil da Cassulinha Cabelos no Instagram: 3.511 publicações, 370 mil seguidores, 1.113 seguindo">
+                </div>
+              </div>
+              <div class="proof-layer proof-layer--accent reveal" style="--stagger:2">
+                <div class="proof-layer__inner proof-layer__inner--float" style="--tilt:3deg">
+                  <div class="proof-case__result proof-case__result--compact">
+                    <strong class="proof-counter" data-count-to="370" data-suffix=" mil">0</strong>
+                    <span>seguidores</span>
+                  </div>
+                </div>
+              </div>
+              <p class="proof-case__caption">Uma marca que saiu de <strong>10 mil</strong> para <strong>370 mil</strong> seguidores — a maior do Brasil no segmento.</p>
+            </div>
+
+            <!-- Case 2: Sandes Motos — antes/depois com a seta já integrada ao print -->
+            <div class="proof-case proof-case--layered proof-case--sandes">
+              <div class="proof-layer proof-layer--main reveal" style="--stagger:0">
+                <div class="proof-layer__inner" style="--tilt:2.5deg" data-parallax="8">
+                  <img class="proof-layer__img proof-layer__img--tall" src="assets/proof/social-sandes-before-after.jpg" alt="Perfil da Sandes Motos no Instagram: antes com 609 seguidores, depois com 16,6 mil seguidores">
+                </div>
+              </div>
+              <p class="proof-case__caption">De <strong>609</strong> para <strong>16,6 mil</strong> seguidores no Instagram.</p>
+            </div>
+
+            <!-- Case 3: resultado orgânico do Reel — número como protagonista + provas de apoio -->
+            <div class="proof-case proof-case--layered proof-case--reel">
+              <div class="proof-layer proof-layer--accent proof-layer--hero reveal" style="--stagger:0">
+                <div class="proof-layer__inner proof-layer__inner--float" style="--tilt:-2deg">
+                  <div class="proof-case__result proof-case__result--hero">
+                    <strong class="proof-counter" data-count-to="4.7" data-decimals="1" data-suffix=" mi">0</strong>
+                    <div class="proof-case__result-text">
+                      <span>reproduções orgânicas</span>
+                      <small>Um Reel, sem tráfego pago — só alcance e conteúdo.</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="proof-layer proof-layer--main reveal" style="--stagger:1">
+                <div class="proof-layer__inner" style="--tilt:-1.5deg" data-parallax="8">
+                  <img class="proof-layer__img proof-layer__img--wide" src="assets/proof/social-reel-stats.jpg" alt="Insights do Reel: 4.713.874 reproduções, 283.327 curtidas, 1.442 comentários, 133.608 compartilhamentos, 5.125 salvamentos">
+                </div>
+              </div>
+              <div class="proof-layer proof-layer--main reveal" style="--stagger:2">
+                <div class="proof-layer__inner" style="--tilt:1.5deg" data-parallax="6">
+                  <img class="proof-layer__img proof-layer__img--wide" src="assets/proof/social-thais-testimonial.jpg" alt="Comentário real de uma cliente elogiando o resultado do trabalho no perfil">
                 </div>
               </div>
             </div>
 
-            <div class="proof-case">
-              <img class="proof-case__img proof-case__img--tall" src="assets/proof/social-sandes-before-after.jpg" alt="Perfil da Sandes Motos no Instagram: antes com 609 seguidores, depois com 16,6 mil seguidores">
-              <p class="proof-case__caption">De <strong>609</strong> para <strong>16,6 mil</strong> seguidores no Instagram.</p>
-            </div>
-
-            <div class="proof-case proof-case--reel">
-              <img class="proof-case__img proof-case__img--wide" src="assets/proof/social-reel-stats.jpg" alt="Insights de um Reel com mais de 4,7 milhões de reproduções, sem tráfego pago">
-              <img class="proof-case__quote" src="assets/proof/social-thais-testimonial.jpg" alt="Comentário real de uma cliente elogiando o resultado do trabalho no perfil">
-              <p class="proof-case__caption"><strong>4,7 mi</strong> de reproduções orgânicas, sem tráfego pago.</p>
-            </div>
-
-            <div class="proof-case">
-              <img class="proof-case__img proof-case__img--tall" src="assets/proof/social-manu-feed.jpg" alt="Perfil e grade de conteúdo organizados para uma nutricionista esportiva">
-              <p class="proof-case__caption">Perfil e feed reorganizados → <strong>6 clientes novos</strong>.</p>
+            <!-- Case 4: MANU — perfil + feed reorganizados -->
+            <div class="proof-case proof-case--layered proof-case--manu">
+              <div class="proof-layer proof-layer--main reveal" style="--stagger:0">
+                <div class="proof-layer__inner" style="--tilt:-1.5deg" data-parallax="8">
+                  <img class="proof-layer__img proof-layer__img--tall" src="assets/proof/social-manu-feed.jpg" alt="Perfil e grade de conteúdo organizados para uma nutricionista esportiva">
+                </div>
+              </div>
+              <div class="proof-layer proof-layer--accent reveal" style="--stagger:2">
+                <div class="proof-layer__inner proof-layer__inner--float" style="--tilt:3deg">
+                  <p class="proof-case__badge"><strong>+6</strong> clientes novos</p>
+                </div>
+              </div>
             </div>
           </div>
 

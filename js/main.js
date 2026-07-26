@@ -157,6 +157,37 @@
     updateCrencaParallax();
   }
 
+  /* ------------------------------- Parallax sutil (cases de prova social) ------- */
+  const proofParallaxEls = Array.from(document.querySelectorAll('[data-parallax]'));
+  if (proofParallaxEls.length && !reduceMotion) {
+    let proofTicking = false;
+    const updateProofParallax = () => {
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      proofParallaxEls.forEach((el) => {
+        const container = el.closest('.proof-case') || el;
+        const rect = container.getBoundingClientRect();
+        const center = rect.top + rect.height / 2 - vh / 2;
+        const range = vh / 2 + rect.height / 2;
+        const progress = Math.max(-1, Math.min(1, center / range));
+        const amount = Number(el.dataset.parallax) || 0;
+        el.style.setProperty('--parallax-y', `${(progress * amount).toFixed(2)}px`);
+      });
+      proofTicking = false;
+    };
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!proofTicking) {
+          proofTicking = true;
+          requestAnimationFrame(updateProofParallax);
+        }
+      },
+      { passive: true }
+    );
+    window.addEventListener('resize', updateProofParallax);
+    updateProofParallax();
+  }
+
   /* ------------------------------- Ecossistema de serviços (rede interativa) ----- */
   const serviceNetwork = document.getElementById('serviceNetwork');
   if (serviceNetwork) {
