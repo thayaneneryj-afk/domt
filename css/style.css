@@ -1641,24 +1641,26 @@ h1, h2, h3, h4 {
 }
 .proof-collage__item--1 {
   left: 0; top: 0;
-  width: 56%; height: 80%;
+  width: 50%; height: 80%;
   z-index: 1;
   transform: rotate(-3deg);
   animation-duration: 8s;
 }
 .proof-collage__item--2 {
   right: 0; top: 0;
-  width: 48%; height: 40%;
+  width: 50%; height: 38%;
   z-index: 2;
   transform: rotate(3deg);
   animation-duration: 6.5s;
   animation-delay: 0.4s;
 }
 .proof-collage__item--3 {
-  right: 3%; bottom: 0;
-  width: 48%; height: 44%;
+  right: 0; bottom: 0;
+  width: 62%; height: 26%;
   z-index: 3;
-  transform: rotate(-4deg);
+  object-fit: contain;
+  background: var(--ink);
+  transform: rotate(-2deg);
   animation-duration: 7.5s;
   animation-delay: 0.8s;
 }
@@ -1712,6 +1714,13 @@ h1, h2, h3, h4 {
   object-fit: cover;
   border-radius: var(--radius-sm);
   border: 1px solid var(--line-on-ink);
+}
+.proof-mini--wide { grid-column: 1 / -1; }
+.proof-mini--wide img {
+  height: auto;
+  object-fit: contain;
+  background: var(--ink);
+  padding: 6px 0;
 }
 .proof-mini figcaption {
   margin-top: 8px;
