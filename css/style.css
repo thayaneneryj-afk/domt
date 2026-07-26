@@ -937,34 +937,6 @@ h1, h2, h3, h4 {
   color: var(--text-on-ink-dim);
   font-size: 1.1rem;
 }
-.services-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1px;
-  background: var(--line-on-ink);
-  border: 1px solid var(--line-on-ink);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-}
-@media (min-width: 700px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1080px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
-.service-card {
-  background: var(--ink-2);
-  padding: 34px 28px;
-  position: relative;
-  transition: background 0.35s var(--ease);
-}
-.service-card:hover { background: var(--ink-3); }
-.service-card__num {
-  font-family: var(--font-display);
-  font-size: 0.82rem;
-  color: var(--text-on-ink-dim);
-  margin-bottom: 22px;
-  display: block;
-}
-.service-card h3 { font-size: 1.2rem; margin-bottom: 10px; }
-.service-card p { color: var(--text-on-ink-dim); font-size: 0.96rem; }
-
 .services-note {
   margin-top: 32px;
   display: flex;
@@ -1623,58 +1595,200 @@ h1, h2, h3, h4 {
 
 
 /* ---------------------------------- Pillar service cards --------------------------- */
-.services-grid--pillars { grid-template-columns: 1fr; }
-@media (min-width: 640px) { .services-grid--pillars { grid-template-columns: repeat(3, 1fr); } }
-.service-card--a { border-top: 3px solid var(--orange); position: relative; overflow: hidden; }
-.service-card--b { border-top: 3px solid var(--brown); }
-.service-card--c { border-top: 3px solid var(--text-on-ink-dim); }
+/* ---------------------------------- Serviços: prova visual / cases ------------------ */
+.proof-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+@media (min-width: 900px) { .proof-grid { grid-template-columns: repeat(3, 1fr); align-items: start; } }
 
-/* fotos de bastidores em opacidade bem baixa, alternando dentro do card do SocialDOMination */
-.service-card__bg {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
+.proof-card {
+  background: var(--ink-2);
+  border: 1px solid var(--line-on-ink);
+  border-radius: var(--radius-lg);
+  padding: 26px 24px 28px;
+  display: flex;
+  flex-direction: column;
 }
-.service-card__bg-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  filter: grayscale(45%);
-  animation: serviceCardBgCycle 20s ease-in-out infinite;
-}
-@keyframes serviceCardBgCycle {
-  0% { opacity: 0; transform: scale(1); }
-  3% { opacity: 0.1; }
-  18% { opacity: 0.1; transform: scale(1.04); }
-  21%, 100% { opacity: 0; }
-}
-.service-card__content { position: relative; z-index: 1; }
-.service-card__tagline {
+.proof-card--social { border-top: 3px solid var(--orange); }
+.proof-card--click { border-top: 3px solid var(--brown); }
+.proof-card--trafego { border-top: 3px solid var(--text-on-ink-dim); }
+
+.proof-card__head { margin-bottom: 18px; }
+.proof-card__head h3 { font-size: 1.2rem; }
+.proof-card__tagline {
+  display: block;
+  margin-top: 6px;
   font-size: 0.85rem;
   color: var(--brown-soft);
   font-weight: 600;
-  margin-bottom: 14px;
-  display: block;
 }
-.service-card__tag-row {
+
+/* ---- SocialDOMination: colagem de prints sobrepostos ---- */
+.proof-collage {
+  position: relative;
+  height: clamp(260px, 68vw, 320px);
+  margin-bottom: 18px;
+}
+.proof-collage__item {
+  position: absolute;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line-on-ink);
+  box-shadow: 0 20px 40px -18px rgba(0, 0, 0, 0.65);
+  animation: proofFloat 7s ease-in-out infinite;
+}
+.proof-collage__item--1 {
+  left: 0; top: 0;
+  width: 56%; height: 80%;
+  z-index: 1;
+  transform: rotate(-3deg);
+  animation-duration: 8s;
+}
+.proof-collage__item--2 {
+  right: 0; top: 0;
+  width: 48%; height: 40%;
+  z-index: 2;
+  transform: rotate(3deg);
+  animation-duration: 6.5s;
+  animation-delay: 0.4s;
+}
+.proof-collage__item--3 {
+  right: 3%; bottom: 0;
+  width: 48%; height: 44%;
+  z-index: 3;
+  transform: rotate(-4deg);
+  animation-duration: 7.5s;
+  animation-delay: 0.8s;
+}
+@keyframes proofFloat {
+  0%, 100% { margin-top: 0; }
+  50% { margin-top: -6px; }
+}
+.proof-stat {
+  position: absolute;
+  left: 0; bottom: 0;
+  z-index: 4;
+  width: 56%;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  margin: 18px 0 24px;
+  align-items: baseline;
+  gap: 4px 10px;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  background: var(--ink);
+  border: 1px solid var(--line-on-ink);
+  box-shadow: 0 20px 40px -16px rgba(0, 0, 0, 0.7);
 }
-.service-card__tag-row span {
+.proof-counter {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.5rem, 5vw, 1.9rem);
+  color: var(--orange);
+  line-height: 1;
+}
+.proof-stat > span {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--text-on-ink);
+}
+.proof-stat small {
+  flex-basis: 100%;
+  color: var(--text-on-ink-dim);
   font-size: 0.76rem;
-  padding: 5px 12px;
-  border-radius: 100px;
+  line-height: 1.4;
+}
+
+.proof-minirow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.proof-mini img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-on-ink);
+}
+.proof-mini figcaption {
+  margin-top: 8px;
+  font-size: 0.74rem;
+  color: var(--text-on-ink-dim);
+  line-height: 1.35;
+}
+.proof-mini figcaption strong { color: var(--orange-soft); }
+
+/* ---- ClickGO: mini vitrine de vídeos + depoimento ---- */
+.proof-reel-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.proof-reel {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line-on-ink);
+  background: var(--ink-3);
+}
+.proof-testimonial img {
+  width: 100%;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line-on-ink);
+}
+.proof-testimonial figcaption {
+  margin-top: 10px;
+  font-size: 0.78rem;
+  color: var(--text-on-ink-dim);
+  text-align: center;
+}
+
+/* ---- DOMTrafego: métricas animadas + prints ---- */
+.proof-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.proof-metric {
+  padding: 14px 12px;
+  border-radius: var(--radius-md);
   background: var(--ink-3);
   border: 1px solid var(--line-on-ink);
+  text-align: center;
+}
+.proof-metric .proof-counter {
+  display: block;
+  font-size: clamp(1.15rem, 4vw, 1.4rem);
+  color: var(--orange-soft);
+}
+.proof-metric span {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.72rem;
   color: var(--text-on-ink-dim);
 }
-.service-card__cta {
+.proof-shot {
+  width: 100%;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line-on-ink);
+  margin-bottom: 12px;
+}
+.proof-caption {
+  font-size: 0.82rem;
+  color: var(--text-on-ink-dim);
+  font-style: italic;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.proof-card__cta {
+  margin-top: auto;
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -1683,8 +1797,12 @@ h1, h2, h3, h4 {
   font-size: 0.92rem;
   color: var(--orange-soft);
 }
-.service-card__cta svg { width: 16px; height: 16px; transition: transform 0.3s var(--ease); }
-.service-card__cta:hover svg { transform: translate(3px, -3px); }
+.proof-card__cta svg { width: 16px; height: 16px; transition: transform 0.3s var(--ease); }
+.proof-card__cta:hover svg { transform: translate(3px, -3px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .proof-collage__item { animation: none; }
+}
 
 /* ---------------------------------- Momento (self-identification) ------------------ */
 .momento-grid {

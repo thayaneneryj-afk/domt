@@ -85,6 +85,50 @@
     revealEls.forEach((el) => el.classList.add('is-visible'));
   }
 
+  /* ------------------------------- Contadores animados (provas de resultado) ---- */
+  const counterEls = Array.from(document.querySelectorAll('[data-count-to]'));
+  if (counterEls.length) {
+    const formatCounter = (el, value) => {
+      const decimals = Number(el.dataset.decimals || 0);
+      const prefix = el.dataset.prefix || '';
+      const suffix = el.dataset.suffix || '';
+      const formatted = value.toLocaleString('pt-BR', {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+      });
+      el.textContent = `${prefix}${formatted}${suffix}`;
+    };
+
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      counterEls.forEach((el) => formatCounter(el, Number(el.dataset.countTo)));
+    } else {
+      const animateCounter = (el) => {
+        const target = Number(el.dataset.countTo);
+        const duration = 1400;
+        const start = performance.now();
+        const tick = (now) => {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          formatCounter(el, target * eased);
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      };
+      const counterObserver = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              animateCounter(entry.target);
+              obs.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.4 }
+      );
+      counterEls.forEach((el) => counterObserver.observe(el));
+    }
+  }
+
   /* ------------------------------- Parallax sutil (seção crença) ---------------- */
   const crencaHero = document.querySelector('.crenca-banner');
   const crencaImg = document.getElementById('crencaHeroImg');
