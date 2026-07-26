@@ -615,17 +615,23 @@ h1, h2, h3, h4 {
 }
 
 .reel-card {
-  position: relative;
   flex: 0 0 auto;
   width: clamp(160px, 42vw, 220px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+}
+@media (min-width: 640px) { .reel-card { width: clamp(190px, 20vw, 240px); } }
+.reel-card__media {
+  position: relative;
   aspect-ratio: 9 / 16;
   border-radius: var(--radius-lg);
   overflow: hidden;
   background: var(--ink-2);
   transition: transform 300ms var(--ease), box-shadow 300ms var(--ease);
 }
-@media (min-width: 640px) { .reel-card { width: clamp(190px, 20vw, 240px); } }
-.reel-card::after {
+.reel-card__media::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -633,19 +639,19 @@ h1, h2, h3, h4 {
   pointer-events: none;
   transition: opacity 250ms ease;
 }
-.reel-card.is-playing {
+.reel-card.is-playing .reel-card__media {
   transform: scale(1.045);
   box-shadow: 0 26px 54px -18px rgba(0, 0, 0, 0.75);
   z-index: 2;
 }
 @media (hover: hover) {
-  .reel-card:hover {
+  .reel-card:hover .reel-card__media {
     transform: scale(1.045);
     box-shadow: 0 26px 54px -18px rgba(0, 0, 0, 0.75);
     z-index: 2;
   }
 }
-.reel-card.is-playing::after { opacity: 0; }
+.reel-card.is-playing .reel-card__media::after { opacity: 0; }
 .reel-card__video {
   width: 100%;
   height: 100%;
@@ -681,7 +687,15 @@ h1, h2, h3, h4 {
 .reel-card__play svg { width: 20px; height: 20px; }
 .reel-card__play .icon-play { margin-left: 2px; }
 .reel-card__play .icon-pause { display: none; }
-.reel-card { cursor: pointer; }
+.reel-card__segment {
+  align-self: center;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--orange-soft);
+}
 @media (hover: hover) {
   .reel-card:hover .reel-card__play {
     transform: scale(1.08);
