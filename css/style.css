@@ -1732,21 +1732,26 @@ h1, h2, h3, h4 {
   z-index: 3;
 }
 
-/* Case 3 — Reel: número em destaque + provas de apoio levemente escalonadas */
-.proof-case--reel .proof-layer--hero { margin-bottom: 14px; }
-.proof-case--reel .proof-case__result--hero {
-  padding: 16px 20px;
-}
-.proof-case--reel .proof-case__result--hero .proof-counter { font-size: clamp(1.9rem, 7vw, 2.4rem); }
-.proof-case--reel .proof-layer--main:nth-of-type(2) .proof-layer__inner { margin-left: -3%; }
-.proof-case--reel .proof-layer--main:last-child .proof-layer__inner { margin-top: -10px; margin-right: -3%; }
+/* Case 3 — Reel: print primeiro (prova visual), resultado como conclusão logo abaixo */
+.proof-case--reel .proof-layer--main { margin-bottom: 16px; }
+.proof-case--reel .proof-case__result { padding: 16px 20px; }
+.proof-case--reel .proof-case__result .proof-counter { font-size: clamp(1.7rem, 6vw, 2.1rem); }
 
 /* Case 4 — MANU: badge de resultado sobrepondo o canto superior direito do print */
-.proof-case--manu { padding-top: 30px; padding-right: 6%; }
+.proof-case--manu { padding-bottom: 26px; padding-left: 4%; }
 .proof-case--manu .proof-layer--accent {
   position: absolute;
-  top: -30px; right: -6%;
+  bottom: -26px; left: -4%;
   z-index: 3;
+}
+
+/* Case 5 — Thaís: card flutuante, com leve rotação e sombra de profundidade */
+.proof-case--thais {
+  width: 92%;
+  margin: 4px auto 0;
+}
+.proof-case--thais .proof-layer__img {
+  box-shadow: 0 22px 42px -16px rgba(0, 0, 0, 0.75);
 }
 
 .proof-case__quote {
