@@ -891,7 +891,9 @@
             <svg viewBox="0 0 96 64" fill="none">
               <line x1="30" y1="32" x2="66" y2="32" stroke="url(#comboGradA)" stroke-width="2"/>
               <path class="combo-flow" d="M30,32 L66,32" pathLength="100"/>
+              <circle class="combo-node-pulse" cx="30" cy="32" r="8" stroke="#f94901"/>
               <circle cx="30" cy="32" r="8" fill="#f94901"/>
+              <circle class="combo-node-pulse combo-node-pulse--d2" cx="66" cy="32" r="8" stroke="#a97847"/>
               <circle cx="66" cy="32" r="8" fill="#a97847"/>
               <defs>
                 <linearGradient id="comboGradA" x1="30" y1="32" x2="66" y2="32" gradientUnits="userSpaceOnUse">
@@ -911,7 +913,9 @@
               <line x1="18" y1="32" x2="70" y2="32" stroke="#f94901" stroke-width="2" stroke-dasharray="4 5"/>
               <path class="combo-flow" d="M18,32 L70,32" pathLength="100"/>
               <path d="M70 32 L78 32 M73 27 L78 32 L73 37" stroke="#f94901" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle class="combo-node-pulse" cx="18" cy="32" r="8" stroke="#f94901"/>
               <circle cx="18" cy="32" r="8" fill="#f94901"/>
+              <circle class="combo-node-pulse combo-node-pulse--d2" cx="70" cy="32" r="8" stroke="#f6f1ea"/>
               <circle cx="70" cy="32" r="8" fill="#f6f1ea"/>
             </svg>
           </span>
@@ -922,13 +926,24 @@
         <div class="combo-card reveal" style="--stagger:2">
           <span class="combo-card__visual" aria-hidden="true">
             <svg viewBox="0 0 96 64" fill="none">
-              <path d="M48 14 L22 50 M48 14 L74 50 M22 50 L74 50" stroke="#a97847" stroke-width="2"/>
-              <path class="combo-flow combo-flow--d1" d="M48,14 L22,50" pathLength="100"/>
-              <path class="combo-flow combo-flow--d2" d="M48,14 L74,50" pathLength="100"/>
-              <path class="combo-flow combo-flow--d3" d="M22,50 L74,50" pathLength="100"/>
-              <circle cx="48" cy="14" r="7" fill="#f94901"/>
-              <circle cx="22" cy="50" r="7" fill="#a97847"/>
-              <circle cx="74" cy="50" r="7" fill="#f6f1ea"/>
+              <path d="M48 36 L48 14 M48 36 L22 50 M48 36 L74 50" stroke="url(#comboGradB)" stroke-width="2"/>
+              <path class="combo-flow combo-flow--d1" d="M48,36 L48,14" pathLength="100"/>
+              <path class="combo-flow combo-flow--d2" d="M48,36 L22,50" pathLength="100"/>
+              <path class="combo-flow combo-flow--d3" d="M48,36 L74,50" pathLength="100"/>
+              <circle class="combo-node-pulse" cx="48" cy="14" r="7" stroke="#f94901"/>
+              <circle cx="48" cy="14" r="6" fill="#f94901"/>
+              <circle class="combo-node-pulse combo-node-pulse--d2" cx="22" cy="50" r="7" stroke="#a97847"/>
+              <circle cx="22" cy="50" r="6" fill="#a97847"/>
+              <circle class="combo-node-pulse combo-node-pulse--d3" cx="74" cy="50" r="7" stroke="#f6f1ea"/>
+              <circle cx="74" cy="50" r="6" fill="#f6f1ea"/>
+              <circle class="combo-node-pulse combo-node-pulse--hub" cx="48" cy="36" r="9" stroke="#f94901"/>
+              <circle cx="48" cy="36" r="7" fill="#f94901"/>
+              <defs>
+                <linearGradient id="comboGradB" x1="22" y1="14" x2="74" y2="50" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#f94901"/>
+                  <stop offset="1" stop-color="#a97847"/>
+                </linearGradient>
+              </defs>
             </svg>
           </span>
           <div class="combo-card__parts">SocialDOMination <span class="plus">+</span> ClickGO <span class="plus">+</span> DOMTrafego</div>
