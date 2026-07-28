@@ -906,39 +906,109 @@ h1, h2, h3, h4 {
 }
 
 .metodo-photo {
+  position: relative;
   margin: 0 auto 40px;
   max-width: 720px;
 }
 .metodo-photo img {
+  position: relative;
+  z-index: 1;
   width: 100%;
   display: block;
   -webkit-mask-image: linear-gradient(to bottom, black 62%, transparent 96%);
   mask-image: linear-gradient(to bottom, black 62%, transparent 96%);
 }
 
+/* palavras-chave da marca, flutuando em vidro fosco atrás da foto da equipe */
+.metodo-keywords {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.metodo-keyword {
+  position: absolute;
+  left: var(--kx);
+  top: var(--ky);
+  transform: translate(-50%, -50%);
+  padding: 8px 18px;
+  border-radius: 100px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(0.7rem, 1.6vw, 0.86rem);
+  white-space: nowrap;
+  color: var(--orange-soft);
+  background: rgba(249, 122, 61, 0.14);
+  border: 1px solid rgba(249, 122, 61, 0.4);
+  backdrop-filter: blur(10px) saturate(160%);
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  box-shadow: 0 10px 26px -10px rgba(249, 73, 1, 0.45);
+  animation: metodoKeywordFloat 7s ease-in-out infinite;
+  animation-delay: var(--kdelay, 0s);
+}
+@keyframes metodoKeywordFloat {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+  50% { transform: translate(-50%, -50%) translateY(-9px); }
+}
+@media (max-width: 539.98px) {
+  .metodo-keyword:nth-child(3),
+  .metodo-keyword:nth-child(4) { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .metodo-keyword { animation: none; }
+}
+
 .method-radial__steps { display: flex; flex-direction: column; }
 .radial-step {
   display: flex;
-  align-items: flex-start;
-  gap: 16px;
+  align-items: stretch;
+  gap: 20px;
   padding: 22px 0;
-  border-top: 1px solid rgba(20, 20, 26, 0.1);
 }
-.radial-step:first-child { border-top: none; padding-top: 0; }
-.radial-step__line {
-  width: 28px;
-  height: 2px;
+.radial-step:first-child { padding-top: 0; }
+.radial-step:last-child { padding-bottom: 0; }
+
+/* trilho vertical: a coluna do nó é esticada para acompanhar a altura real de
+   cada passo, então o trecho de linha (+-22px, o padding fixo) sempre encosta
+   exatamente no vizinho, não importa quanto texto o passo tenha */
+.radial-step__rail {
+  position: relative;
   flex-shrink: 0;
-  margin-top: 15px;
-  background: linear-gradient(90deg, var(--orange), var(--brown));
+  width: 40px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
-.radial-step__num {
+.radial-step__rail::before {
+  content: '';
+  position: absolute;
+  top: -22px;
+  bottom: -22px;
+  left: 50%;
+  width: 2px;
+  margin-left: -1px;
+  background: linear-gradient(180deg, var(--orange), var(--brown) 50%, var(--orange));
+  opacity: 0.4;
+  z-index: 0;
+}
+.radial-step:first-child .radial-step__rail::before { top: 0; }
+.radial-step:last-child .radial-step__rail::before { bottom: 0; }
+.radial-step__node {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 0.8rem;
-  color: var(--orange);
-  display: block;
-  margin-bottom: 4px;
+  font-size: 0.85rem;
+  color: var(--white);
+  background: var(--gradient-brand);
+  box-shadow: 0 6px 18px -6px rgba(249, 73, 1, 0.55);
 }
 .radial-step__title { font-size: clamp(1.15rem, 2vw, 1.4rem); margin-bottom: 8px; }
 .radial-step__desc { color: var(--text-on-paper-dim); margin-bottom: 12px; max-width: 60ch; }
@@ -965,16 +1035,6 @@ h1, h2, h3, h4 {
   color: var(--text-on-ink-dim);
   font-size: 1.1rem;
 }
-.services-note {
-  margin-top: 32px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  color: var(--text-on-ink-dim);
-  font-size: 0.95rem;
-}
-.services-note svg { width: 20px; height: 20px; color: var(--brown-soft); flex-shrink: 0; }
-
 /* ---------------------------------- Combinações ------------------------------- */
 .lead-line {
   font-family: var(--font-display);
