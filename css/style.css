@@ -920,19 +920,20 @@ h1, h2, h3, h4 {
   mask-image: linear-gradient(to bottom, black 62%, transparent 96%);
 }
 
-/* luz laranja pulsando atrás do casal, com leve parallax de scroll (--parallax-y via JS) */
+/* luz laranja pulsando atrás do casal, centralizada e cobrindo toda a
+   composição, com leve parallax de scroll (--parallax-y via JS) */
 .metodo-photo__glow {
   position: absolute;
-  inset: 8% 12%;
+  inset: 4% 6%;
   z-index: -1;
-  background: radial-gradient(circle, rgba(249, 73, 1, 0.55) 0%, rgba(249, 73, 1, 0.25) 42%, transparent 72%);
-  filter: blur(46px);
-  animation: metodoGlowPulse 4.5s ease-in-out infinite;
+  background: radial-gradient(circle, rgba(249, 73, 1, 0.5) 0%, rgba(249, 73, 1, 0.22) 46%, transparent 74%);
+  filter: blur(52px);
+  animation: metodoGlowPulse 6s ease-in-out infinite;
   pointer-events: none;
 }
 @keyframes metodoGlowPulse {
-  0%, 100% { opacity: 0.7; transform: translateY(var(--parallax-y, 0px)) scale(0.94); }
-  50% { opacity: 1; transform: translateY(var(--parallax-y, 0px)) scale(1.06); }
+  0%, 100% { opacity: 0.68; transform: translateY(var(--parallax-y, 0px)) scale(0.96); }
+  50% { opacity: 1; transform: translateY(var(--parallax-y, 0px)) scale(1.04); }
 }
 @media (prefers-reduced-motion: reduce) {
   .metodo-photo__glow { animation: none; }
@@ -953,33 +954,40 @@ h1, h2, h3, h4 {
 .metodo-keywords__lines {
   display: none;
 }
+/* rede de conexão: curvas finas e suaves, baixa opacidade — parecem uma
+   única rede, não linhas retas isoladas. Cada uma se desenha na sequência
+   da palavra correspondente (--stagger-m), como se a linha "alcançasse"
+   a palavra no instante em que ela aparece */
 .metodo-kline {
   fill: none;
   stroke: var(--orange-soft);
-  stroke-width: 0.35;
+  stroke-width: 0.22;
   stroke-linecap: round;
-  opacity: 0.32;
+  opacity: 0.22;
   stroke-dasharray: 100;
   stroke-dashoffset: 100;
-  transition: stroke-dashoffset 1.5s var(--ease);
+  transition: stroke-dashoffset 0.9s var(--ease);
+  transition-delay: calc(0.55s + var(--stagger-m, 0) * 260ms);
 }
 .metodo-khub {
   fill: var(--orange-soft);
   opacity: 0;
-  transition: opacity 0.8s var(--ease) 0.7s;
+  transition: opacity 0.6s var(--ease) 0.3s;
 }
 .metodo-keywords.is-visible .metodo-kline { stroke-dashoffset: 0; }
-.metodo-keywords.is-visible .metodo-khub { opacity: 0.4; }
+.metodo-keywords.is-visible .metodo-khub { opacity: 0.38; }
 
-/* entrada: cada palavra some/escala a partir do centro, escalonada pelo --stagger
-   (herdado do .reveal-group do container) */
+/* entrada em cascata: o casal aparece primeiro (.metodo-photo.reveal, sem
+   delay), depois as linhas começam a se desenhar, depois cada palavra
+   "floresce" a partir do centro logo que sua linha chega até ela */
 .metodo-keyword-wrap.reveal {
   position: absolute;
   left: var(--kx);
   top: var(--ky);
   opacity: 0;
   transform: translate(-50%, -50%) scale(0.75);
-  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+  transition-delay: calc(var(--stagger, 0) * 90ms);
   pointer-events: auto;
 }
 .metodo-keyword-wrap.reveal.is-visible {
@@ -1019,30 +1027,37 @@ h1, h2, h3, h4 {
   border-color: rgba(249, 122, 61, 0.8);
   box-shadow: 0 14px 32px -8px rgba(249, 73, 1, 0.7);
 }
-/* variação de tamanho/opacidade pra sugerir profundidade: palavras "mais perto"
-   (maiores, mais nítidas) e "mais longe" (menores, mais discretas) — o padding
-   em em escala junto com a fonte, então o fundo sempre acompanha o texto */
+/* variação de tamanho/opacidade/sombra pra sugerir profundidade: palavras
+   "mais perto" (maiores, sombra mais forte) e "mais longe" (menores, sombra
+   quase inexistente) — o padding em em escala junto com a fonte, então o
+   fundo sempre acompanha o texto. Cada camada também flutua num ritmo
+   levemente diferente, pra nunca ficarem sincronizadas entre si */
 .metodo-keyword--sm {
   font-size: clamp(0.6rem, 1.2vw, 0.7rem);
   opacity: 0.8;
+  box-shadow: 0 6px 16px -10px rgba(249, 73, 1, 0.35);
+  animation-duration: 7.8s;
 }
 .metodo-keyword--md {
   font-size: clamp(0.72rem, 1.5vw, 0.86rem);
+  animation-duration: 7.2s;
 }
 .metodo-keyword--lg {
   font-size: clamp(0.86rem, 2vw, 1.1rem);
   font-weight: 700;
-  box-shadow: 0 14px 32px -12px rgba(249, 73, 1, 0.55);
+  box-shadow: 0 16px 34px -12px rgba(249, 73, 1, 0.6);
+  animation-duration: 6.4s;
 }
-/* flutuação + respiração (98% -> 100%) combinadas num só movimento, discreto */
+/* flutuação muito sutil (poucos pixels) + respiração leve, discreto */
 @keyframes metodoKeywordLive {
-  0%, 100% { transform: translateY(0) scale(0.98); }
-  50% { transform: translateY(-7px) scale(1); }
+  0%, 100% { transform: translateY(0) scale(0.985); }
+  50% { transform: translateY(-3px) scale(1); }
 }
 
-/* telas estreitas: a foto domina a largura da tela; as palavras se distribuem
-   ao redor dela (acima, nas laterais e perto da base — sobre as áreas
-   transparentes da própria foto), nunca sobre o rosto do casal */
+/* telas estreitas: a foto domina a largura da tela; as palavras circulam ao
+   redor dela (composição radial: dois cantos acima, duas laterais, um canto
+   abaixo), sempre sobre áreas transparentes da própria foto, nunca sobre o
+   rosto do casal — pensado especificamente pro mobile, não é uma adaptação */
 @media (max-width: 899.98px) {
   /* alinha o container das palavras exatamente com a caixa da foto (que tem
      padding lateral na versão full-bleed), senão as porcentagens de posição
@@ -1052,6 +1067,9 @@ h1, h2, h3, h4 {
   .metodo-keyword-wrap.reveal {
     left: var(--kx-m);
     top: var(--ky-m);
+    /* cascata mobile: casal -> linhas -> cada palavra floresce quando sua
+       própria linha chega até ela (--stagger-m, sincronizado com .metodo-kline) */
+    transition-delay: calc(0.75s + var(--stagger-m, 0) * 260ms);
   }
   .metodo-keyword {
     font-size: clamp(0.62rem, 3vw, 0.76rem);
@@ -1063,7 +1081,7 @@ h1, h2, h3, h4 {
   .metodo-keyword { animation: none; }
   .metodo-keyword-wrap.reveal { transition: none; opacity: 1; transform: translate(-50%, -50%) scale(1); }
   .metodo-kline { transition: none; stroke-dashoffset: 0; }
-  .metodo-khub { transition: none; opacity: 0.4; }
+  .metodo-khub { transition: none; opacity: 0.38; }
 }
 
 .method-radial__steps { display: flex; flex-direction: column; }
