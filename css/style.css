@@ -178,8 +178,6 @@ h1, h2, h3, h4 {
   padding-top: 0;
   overflow: hidden;
 }
-.section--crenca .section-lede { color: rgba(28, 19, 11, 0.72); }
-.section--crenca .belief-item h4 { color: var(--text-on-ink); }
 
 .crenca-banner {
   width: 100vw;
@@ -203,11 +201,6 @@ h1, h2, h3, h4 {
   will-change: transform;
   -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 85%, transparent 100%);
   mask-image: linear-gradient(to bottom, #000 0%, #000 85%, transparent 100%);
-}
-
-.crenca-emphasis {
-  font-style: italic;
-  font-weight: 500;
 }
 
 /* Ambient fabric texture (from the DOMT brand materials) */
@@ -859,17 +852,52 @@ h1, h2, h3, h4 {
 }
 .vision-stmt p { font-size: clamp(1.1rem, 2vw, 1.4rem); font-family: var(--font-display); font-weight: 500; line-height: 1.4; }
 .vision-stmt em { font-style: normal; color: var(--brown-soft); }
+@property --crenca-light-angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
 .vision-closing {
-  margin-top: 48px;
-  max-width: 640px;
-  font-size: 1.15rem;
+  position: relative;
+  isolation: isolate;
+  margin: 40px auto 0;
+  max-width: 680px;
+  font-size: clamp(1.15rem, 2vw, 1.3rem);
+  line-height: 1.6;
   color: var(--text-on-ink-dim);
-  padding: 28px 32px;
-  border-radius: var(--radius-md);
+  padding: clamp(32px, 5vw, 46px) clamp(28px, 5vw, 42px);
+  border-radius: var(--radius-lg);
   background: var(--ink-2);
   border: 1px solid var(--line-on-ink);
 }
 .vision-closing strong { color: var(--text-on-ink); }
+.vision-closing::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  z-index: -1;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--crenca-light-angle),
+    transparent 0deg,
+    transparent 265deg,
+    rgba(249, 73, 1, 0.7) 300deg,
+    #fff3ea 320deg,
+    rgba(249, 73, 1, 0.7) 340deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: crencaLightSpin 5s linear infinite;
+}
+@keyframes crencaLightSpin {
+  to { --crenca-light-angle: 360deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vision-closing::before { animation: none; }
+}
 
 /* ---------------------------------- Method radial diagram --------------------------- */
 .method-radial {
@@ -1230,67 +1258,6 @@ h1, h2, h3, h4 {
   color: var(--text-on-ink-dim);
 }
 
-/* ---------------------------------- Crença / Belief grid --------------------------- */
-.belief-grid {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-  margin-top: 44px;
-}
-@media (min-width: 640px) { .belief-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1080px) { .belief-grid { grid-template-columns: repeat(5, 1fr); gap: 20px; } }
-
-.belief-grid__line {
-  display: none;
-}
-@media (min-width: 1080px) {
-  .belief-grid__line {
-    display: block;
-    position: absolute;
-    left: 47px;
-    right: 47px;
-    top: 45px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255, 122, 61, 0.55) 12%, rgba(255, 122, 61, 0.55) 88%, transparent);
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: transform 900ms var(--ease);
-    z-index: 0;
-  }
-  .belief-grid.is-visible .belief-grid__line { transform: scaleX(1); }
-}
-
-.belief-grid .belief-item {
-  position: relative;
-  z-index: 1;
-  background: var(--ink-2);
-  border: 1px solid var(--line-on-ink);
-  border-radius: var(--radius-md);
-  padding: 26px 22px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  transition: opacity 420ms var(--ease), transform 380ms var(--ease), box-shadow 380ms var(--ease), border-color 380ms var(--ease);
-}
-@media (hover: hover) {
-  .belief-grid .belief-item:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 22px 44px -18px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 122, 61, 0.4);
-    border-color: rgba(255, 122, 61, 0.55);
-  }
-}
-.belief-item__icon {
-  width: 38px; height: 38px;
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  background: var(--gradient-brand-soft);
-  color: var(--orange-soft);
-  flex-shrink: 0;
-}
-.belief-item__icon svg { width: 20px; height: 20px; }
-.belief-item h4 { font-size: 0.98rem; font-family: var(--font-display); }
-.belief-item p { font-size: 0.85rem; color: var(--text-on-ink-dim); }
 
 /* ---------------------------------- Ecossistema de serviços (rede interativa) ------- */
 .service-network-section { overflow: hidden; }
