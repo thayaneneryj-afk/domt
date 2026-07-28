@@ -155,6 +155,7 @@ h1, h2, h3, h4 {
 .section--ink { background: var(--ink); color: var(--text-on-ink); }
 .section--paper { background: var(--paper); color: var(--text-on-paper); }
 .section--ink + .section--ink { padding-top: 0; }
+.hero + .section { padding-top: clamp(28px, 5vw, 56px); }
 
 .section-head {
   margin-bottom: clamp(40px, 6vw, 72px);
@@ -175,32 +176,11 @@ h1, h2, h3, h4 {
 .section--crenca {
   background: var(--orange);
   color: var(--ink);
-  padding-top: 0;
-  overflow: hidden;
 }
 
-.crenca-banner {
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  margin-left: -50vw;
-  height: clamp(180px, 24vw, 300px);
-  overflow: hidden;
-  margin-bottom: clamp(36px, 6vw, 64px);
-  background: var(--orange);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.crenca-banner__img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  object-position: center center;
-  display: block;
-  will-change: transform;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 85%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 85%, transparent 100%);
+.crenca-emphasis {
+  font-style: italic;
+  font-weight: 500;
 }
 
 /* Ambient fabric texture (from the DOMT brand materials) */
@@ -1584,24 +1564,22 @@ h1, h2, h3, h4 {
 @media (min-width: 900px) { .proof-grid { grid-template-columns: repeat(3, 1fr); align-items: start; } }
 
 .proof-card {
-  background: var(--ink-2);
-  border: 1px solid var(--line-on-ink);
+  background: var(--orange);
+  border: 1px solid rgba(18, 11, 7, 0.12);
   border-radius: var(--radius-lg);
   padding: 26px 24px 28px;
   display: flex;
   flex-direction: column;
+  color: var(--ink);
 }
-.proof-card--social { border-top: 3px solid var(--orange); }
-.proof-card--click { border-top: 3px solid var(--brown); }
-.proof-card--trafego { border-top: 3px solid var(--text-on-ink-dim); }
 
 .proof-card__head { margin-bottom: 18px; }
-.proof-card__head h3 { font-size: 1.2rem; }
+.proof-card__head h3 { font-size: 1.2rem; color: var(--ink); }
 .proof-card__tagline {
   display: block;
   margin-top: 6px;
   font-size: 0.85rem;
-  color: var(--brown-soft);
+  color: rgba(18, 11, 7, 0.72);
   font-weight: 600;
 }
 
@@ -1683,10 +1661,10 @@ h1, h2, h3, h4 {
 .proof-case__caption {
   margin-top: 12px;
   font-size: 0.82rem;
-  color: var(--text-on-ink-dim);
+  color: rgba(18, 11, 7, 0.72);
   line-height: 1.4;
 }
-.proof-case__caption strong { color: var(--orange-soft); }
+.proof-case__caption strong { color: var(--ink); }
 
 /* Case 1 — Cassulinha: card compacto no canto superior direito, sobre a área decorativa da foto */
 .proof-case--cassulinha { padding-top: 20px; padding-right: 16%; }
@@ -1727,12 +1705,12 @@ h1, h2, h3, h4 {
 .proof-testimonial img {
   width: 100%;
   border-radius: var(--radius-md);
-  border: 1px solid var(--line-on-ink);
+  border: 1px solid rgba(18, 11, 7, 0.16);
 }
 .proof-testimonial figcaption {
   margin-top: 10px;
   font-size: 0.78rem;
-  color: var(--text-on-ink-dim);
+  color: rgba(18, 11, 7, 0.72);
   text-align: center;
 }
 
@@ -1741,12 +1719,12 @@ h1, h2, h3, h4 {
 .proof-shot {
   width: 100%;
   border-radius: var(--radius-md);
-  border: 1px solid var(--line-on-ink);
+  border: 1px solid rgba(18, 11, 7, 0.16);
   margin-bottom: 12px;
 }
 .proof-caption {
   font-size: 0.82rem;
-  color: var(--text-on-ink-dim);
+  color: rgba(18, 11, 7, 0.72);
   font-style: italic;
   margin-bottom: 20px;
   line-height: 1.5;
@@ -1761,13 +1739,14 @@ h1, h2, h3, h4 {
 }
 @media (min-width: 860px) { .combo-grid { grid-template-columns: repeat(3, 1fr); } }
 .combo-card {
-  background: var(--ink-2);
-  border: 1px solid var(--line-on-ink);
+  background: var(--white);
+  border: 1px solid rgba(18, 11, 7, 0.12);
   border-radius: var(--radius-md);
   padding: 22px 24px 26px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  color: var(--text-on-paper);
 }
 @media (hover: hover) {
   .combo-card {
@@ -1785,14 +1764,15 @@ h1, h2, h3, h4 {
   align-items: center;
   gap: 8px;
   font-size: 0.85rem;
-  color: var(--text-on-ink-dim);
+  color: var(--text-on-paper-dim);
 }
-.combo-card__parts .plus { color: var(--orange-soft); font-weight: 700; }
+.combo-card__parts .plus { color: var(--brown); font-weight: 700; }
 .combo-card__name {
   font-family: var(--font-display);
   font-size: 1.3rem;
+  color: var(--text-on-paper);
 }
-.combo-card__desc { color: var(--text-on-ink-dim); font-size: 0.92rem; }
+.combo-card__desc { color: var(--text-on-paper-dim); font-size: 0.92rem; }
 
 /* ---------------------------------- Start Reels pricing ----------------------------- */
 .pricing-grid {

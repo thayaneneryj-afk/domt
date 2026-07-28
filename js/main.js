@@ -137,34 +137,6 @@
     }
   }
 
-  /* ------------------------------- Parallax sutil (seção crença) ---------------- */
-  const crencaHero = document.querySelector('.crenca-banner');
-  const crencaImg = document.getElementById('crencaHeroImg');
-  if (crencaHero && crencaImg && !reduceMotion) {
-    let crencaTicking = false;
-    const updateCrencaParallax = () => {
-      const rect = crencaHero.getBoundingClientRect();
-      const vh = window.innerHeight || document.documentElement.clientHeight;
-      const center = rect.top + rect.height / 2 - vh / 2;
-      const range = vh / 2 + rect.height / 2;
-      const progress = Math.max(-1, Math.min(1, center / range));
-      crencaImg.style.transform = `translateY(${(progress * -22).toFixed(2)}px)`;
-      crencaTicking = false;
-    };
-    window.addEventListener(
-      'scroll',
-      () => {
-        if (!crencaTicking) {
-          crencaTicking = true;
-          requestAnimationFrame(updateCrencaParallax);
-        }
-      },
-      { passive: true }
-    );
-    window.addEventListener('resize', updateCrencaParallax);
-    updateCrencaParallax();
-  }
-
   /* ------------------------------- Parallax sutil (cases de prova social) ------- */
   const proofParallaxEls = Array.from(document.querySelectorAll('[data-parallax]'));
   if (proofParallaxEls.length && !reduceMotion) {
