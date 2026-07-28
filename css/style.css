@@ -875,18 +875,18 @@ h1, h2, h3, h4 {
 .method-radial {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 44px;
-  align-items: center;
 }
-@media (min-width: 900px) { .method-radial { grid-template-columns: 320px 1fr; gap: 56px; } }
 
-.method-radial__rings {
-  width: 100%;
-  max-width: 300px;
-  margin-inline: auto;
-  aspect-ratio: 1/1;
+.metodo-photo {
+  margin: 0 auto 40px;
+  max-width: 720px;
 }
-.method-radial__rings svg { width: 100%; height: 100%; }
+.metodo-photo img {
+  width: 100%;
+  display: block;
+  -webkit-mask-image: linear-gradient(to bottom, black 62%, transparent 96%);
+  mask-image: linear-gradient(to bottom, black 62%, transparent 96%);
+}
 
 .method-radial__steps { display: flex; flex-direction: column; }
 .radial-step {
@@ -1080,6 +1080,9 @@ h1, h2, h3, h4 {
   width: 100%;
   border-radius: 6px;
   background: rgba(122, 74, 38, 0.35);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.2s var(--ease);
 }
 .timeline-track__fill-cnpj {
   position: absolute; inset: 0;
@@ -1087,6 +1090,13 @@ h1, h2, h3, h4 {
   left: 58%;
   border-radius: 6px;
   background: var(--gradient-brand);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.2s var(--ease) 0.35s;
+}
+.timeline-card.is-visible .timeline-track__fill-exp,
+.timeline-card.is-visible .timeline-track__fill-cnpj {
+  transform: scaleX(1);
 }
 .timeline-legend { display: flex; flex-direction: column; gap: 18px; }
 .timeline-legend__item { display: flex; gap: 14px; align-items: flex-start; }
@@ -1095,119 +1105,6 @@ h1, h2, h3, h4 {
 .timeline-legend__dot--cnpj { background: var(--orange); }
 .timeline-legend__item h4 { font-size: 1rem; margin-bottom: 4px; font-family: var(--font-display); }
 .timeline-legend__item p { font-size: 0.9rem; color: var(--text-on-ink-dim); }
-
-.resultados-photo {
-  margin: 0 0 48px;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  position: relative;
-}
-.resultados-photo img {
-  width: 100%;
-  max-height: 420px;
-  object-fit: cover;
-  display: block;
-}
-.resultados-photo figcaption {
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  padding: 20px 24px;
-  background: linear-gradient(0deg, rgba(10, 7, 5, 0.75), transparent);
-  color: var(--white);
-  font-size: 0.88rem;
-}
-
-/* ---------------------------------- Proof / Autoridade ------------------------- */
-.proof-stats {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: rgba(20,20,26,0.1);
-  border: 1px solid rgba(20,20,26,0.1);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  margin-bottom: 56px;
-}
-@media (min-width: 760px) { .proof-stats { grid-template-columns: repeat(4, 1fr); } }
-.proof-stat {
-  background: var(--paper);
-  padding: 30px 22px;
-  text-align: center;
-}
-.proof-stat__value {
-  font-family: var(--font-display);
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 700;
-  color: var(--text-on-paper-dim);
-  margin-bottom: 8px;
-  letter-spacing: 0.02em;
-}
-.proof-stat__label { font-size: 0.85rem; color: var(--text-on-paper-dim); }
-
-.proof-block-title {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-on-paper-dim);
-  margin-bottom: 20px;
-}
-
-.logo-wall {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: rgba(20,20,26,0.1);
-  border: 1px solid rgba(20,20,26,0.1);
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  margin-bottom: 56px;
-}
-@media (min-width: 700px) { .logo-wall { grid-template-columns: repeat(4, 1fr); } }
-.logo-slot {
-  background: var(--paper);
-  min-height: 92px;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--text-on-paper-dim);
-  font-size: 0.82rem;
-  text-align: center;
-  padding: 12px;
-  border: 1px dashed rgba(20,20,26,0.16);
-  margin: -1px;
-}
-
-.testimonial-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 20px;
-}
-@media (min-width: 760px) { .testimonial-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1080px) { .testimonial-grid { grid-template-columns: repeat(3, 1fr); } }
-.testimonial-card {
-  border: 1px dashed rgba(20,20,26,0.2);
-  border-radius: var(--radius-md);
-  padding: 28px;
-  background: var(--paper);
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  min-height: 190px;
-}
-.testimonial-card__quote {
-  color: var(--text-on-paper-dim);
-  font-style: italic;
-  flex: 1;
-}
-.testimonial-card__meta { font-size: 0.85rem; color: var(--text-on-paper-dim); font-weight: 600; }
-.placeholder-badge {
-  align-self: flex-start;
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--orange);
-  background: var(--gradient-brand-soft);
-  padding: 4px 10px;
-  border-radius: 100px;
-}
 
 /* ---------------------------------- CTA Final ----------------------------------- */
 .cta-final {
@@ -1827,50 +1724,6 @@ h1, h2, h3, h4 {
   margin-bottom: 20px;
   line-height: 1.5;
 }
-
-/* ---------------------------------- Momento (self-identification) ------------------ */
-.momento-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1px;
-  background: rgba(20, 20, 26, 0.1);
-  border: 1px solid rgba(20, 20, 26, 0.1);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-}
-@media (min-width: 760px) { .momento-grid { grid-template-columns: repeat(2, 1fr); } }
-.momento-card {
-  background: var(--paper);
-  padding: 30px 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.momento-card__need {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  color: var(--text-on-paper);
-}
-.momento-card__arrow {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--text-on-paper-dim);
-  font-size: 0.85rem;
-}
-.momento-card__arrow svg { width: 16px; height: 16px; color: var(--orange); }
-.momento-card__solution {
-  display: inline-flex;
-  align-self: flex-start;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.92rem;
-  padding: 9px 18px;
-  border-radius: 100px;
-  background: var(--gradient-brand);
-  color: var(--white);
-}
-.momento-cta { margin-top: 44px; text-align: center; }
 
 /* ---------------------------------- Combinações ------------------------------------ */
 .combo-grid {
