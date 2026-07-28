@@ -99,9 +99,17 @@
       el.textContent = `${prefix}${formatted}${suffix}`;
     };
 
+    // trava a largura final de cada contador antes de animar, para o texto não
+    // "tremer" o layout ao redor enquanto os dígitos mudam de tamanho
+    counterEls.forEach((el) => {
+      formatCounter(el, Number(el.dataset.countTo));
+      el.style.minWidth = `${el.getBoundingClientRect().width}px`;
+    });
+
     if (reduceMotion || !('IntersectionObserver' in window)) {
       counterEls.forEach((el) => formatCounter(el, Number(el.dataset.countTo)));
     } else {
+      counterEls.forEach((el) => formatCounter(el, 0));
       const animateCounter = (el) => {
         const target = Number(el.dataset.countTo);
         const duration = 1400;
