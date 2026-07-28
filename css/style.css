@@ -183,6 +183,12 @@ h1, h2, h3, h4 {
   font-weight: 500;
 }
 
+.sobre-emphasis {
+  color: var(--orange);
+  font-style: italic;
+  font-weight: 500;
+}
+
 /* Ambient fabric texture (from the DOMT brand materials) */
 .section--dotted::before {
   content: '';
@@ -854,22 +860,23 @@ h1, h2, h3, h4 {
 .vision-closing::before {
   content: '';
   position: absolute;
-  inset: -1.5px;
+  inset: -2px;
   z-index: -1;
   border-radius: inherit;
-  padding: 1.5px;
+  padding: 2px;
   background: conic-gradient(
     from var(--crenca-light-angle),
     transparent 0deg,
-    transparent 265deg,
-    rgba(249, 73, 1, 0.7) 300deg,
-    #fff3ea 320deg,
-    rgba(249, 73, 1, 0.7) 340deg,
+    transparent 255deg,
+    rgba(249, 73, 1, 0.95) 295deg,
+    #fffaf5 320deg,
+    rgba(249, 73, 1, 0.95) 345deg,
     transparent 360deg
   );
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
+  filter: drop-shadow(0 0 10px rgba(249, 73, 1, 0.9)) drop-shadow(0 0 20px rgba(249, 73, 1, 0.5));
   animation: crencaLightSpin 5s linear infinite;
 }
 @keyframes crencaLightSpin {
@@ -887,6 +894,7 @@ h1, h2, h3, h4 {
 
 .metodo-photo {
   position: relative;
+  isolation: isolate;
   margin: 0 auto 40px;
   max-width: min(860px, calc(100% - 200px));
 }
@@ -900,6 +908,25 @@ h1, h2, h3, h4 {
   display: block;
   -webkit-mask-image: linear-gradient(to bottom, black 62%, transparent 96%);
   mask-image: linear-gradient(to bottom, black 62%, transparent 96%);
+}
+
+/* luz laranja pulsando atrás do casal */
+.metodo-photo::before {
+  content: '';
+  position: absolute;
+  inset: 8% 12%;
+  z-index: -1;
+  background: radial-gradient(circle, rgba(249, 73, 1, 0.55) 0%, rgba(249, 73, 1, 0.25) 42%, transparent 72%);
+  filter: blur(46px);
+  animation: metodoGlowPulse 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes metodoGlowPulse {
+  0%, 100% { opacity: 0.7; transform: scale(0.94); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .metodo-photo::before { animation: none; }
 }
 
 /* palavras-chave da marca, flutuando em vidro fosco atrás da foto da equipe */
@@ -950,9 +977,27 @@ h1, h2, h3, h4 {
   0%, 100% { transform: translate(-50%, -50%) translateY(0); }
   50% { transform: translate(-50%, -50%) translateY(-9px); }
 }
+/* telas estreitas: em vez de espalhar pros lados (não cabe), as palavras
+   viram uma fileira acima da foto, todas visíveis */
 @media (max-width: 899.98px) {
-  .metodo-keyword:nth-child(3),
-  .metodo-keyword:nth-child(4) { display: none; }
+  .metodo-keywords {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .metodo-keyword {
+    position: static;
+    transform: none;
+    animation: metodoKeywordFloatMobile 7s ease-in-out infinite;
+    animation-delay: var(--kdelay, 0s);
+  }
+}
+@keyframes metodoKeywordFloatMobile {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
 @media (prefers-reduced-motion: reduce) {
   .metodo-keyword { animation: none; }
@@ -1219,17 +1264,6 @@ h1, h2, h3, h4 {
   pointer-events: none;
 }
 .cta-final .container { position: relative; z-index: 1; }
-.cta-final__avatar {
-  display: block;
-  width: 88px;
-  height: 88px;
-  margin: 0 auto 24px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid var(--orange);
-  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.6);
-}
-.cta-final__avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .cta-final__eyebrow {
   font-family: var(--font-display);
   color: var(--text-on-ink-dim);
@@ -1590,7 +1624,7 @@ h1, h2, h3, h4 {
 }
 
 .proof-card__head { margin-bottom: 18px; }
-.proof-card__head h3 { font-size: 1.2rem; color: var(--ink); }
+.proof-card__head h3 { font-size: 1.2rem; color: var(--white); }
 .proof-card__tagline {
   display: block;
   margin-top: 6px;
@@ -1639,9 +1673,9 @@ h1, h2, h3, h4 {
   display: block;
   border-radius: var(--radius-md);
   border: 1px solid var(--line-on-ink);
-  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.65);
+  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.88);
 }
-.proof-layer__img--tall { max-height: 340px; object-fit: cover; object-position: center; }
+.proof-layer__img--tall { max-height: 340px; object-fit: cover; object-position: top; }
 .proof-layer__img--wide { object-fit: contain; background: var(--ink); }
 
 .proof-case__result {
@@ -1690,14 +1724,6 @@ h1, h2, h3, h4 {
   width: 40%;
   z-index: 3;
 }
-/* recorta o excesso de fundo vazio nas laterais (braços abertos) sem cortar o
-   rosto nem o cartão de perfil: mantém a altura inteira, só estreita a largura */
-.proof-case--cassulinha .proof-layer--main .proof-layer__img {
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  object-position: 60% center;
-}
-
 /* Case 3 — Reel: print primeiro (prova visual), resultado como conclusão logo abaixo */
 .proof-case--reel .proof-layer--main { margin-bottom: 16px; }
 .proof-case--reel .proof-case__result { padding: 16px 20px; }
@@ -1709,7 +1735,7 @@ h1, h2, h3, h4 {
   margin: 4px auto 0;
 }
 .proof-case--thais .proof-layer__img {
-  box-shadow: 0 22px 42px -16px rgba(0, 0, 0, 0.75);
+  box-shadow: 0 22px 42px -16px rgba(0, 0, 0, 0.92);
 }
 
 .proof-case__quote {
