@@ -888,7 +888,10 @@ h1, h2, h3, h4 {
 .metodo-photo {
   position: relative;
   margin: 0 auto 40px;
-  max-width: 720px;
+  max-width: min(860px, calc(100% - 200px));
+}
+@media (max-width: 899.98px) {
+  .metodo-photo { max-width: min(860px, calc(100% - 90px)); }
 }
 .metodo-photo img {
   position: relative;
@@ -915,7 +918,7 @@ h1, h2, h3, h4 {
   border-radius: 100px;
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: clamp(0.7rem, 1.6vw, 0.86rem);
+  font-size: clamp(0.68rem, 1.5vw, 0.82rem);
   white-space: nowrap;
   color: var(--orange-soft);
   background: rgba(249, 122, 61, 0.14);
@@ -926,11 +929,28 @@ h1, h2, h3, h4 {
   animation: metodoKeywordFloat 7s ease-in-out infinite;
   animation-delay: var(--kdelay, 0s);
 }
+/* variação de tamanho/opacidade pra sugerir profundidade: palavras "mais perto"
+   (maiores, mais nítidas) e "mais longe" (menores, mais discretas) */
+.metodo-keyword--sm {
+  font-size: clamp(0.6rem, 1.2vw, 0.7rem);
+  padding: 6px 14px;
+  opacity: 0.8;
+  filter: blur(0.2px);
+}
+.metodo-keyword--md {
+  font-size: clamp(0.72rem, 1.5vw, 0.86rem);
+}
+.metodo-keyword--lg {
+  font-size: clamp(0.86rem, 2vw, 1.1rem);
+  padding: 10px 22px;
+  font-weight: 700;
+  box-shadow: 0 14px 32px -12px rgba(249, 73, 1, 0.55);
+}
 @keyframes metodoKeywordFloat {
   0%, 100% { transform: translate(-50%, -50%) translateY(0); }
   50% { transform: translate(-50%, -50%) translateY(-9px); }
 }
-@media (max-width: 539.98px) {
+@media (max-width: 899.98px) {
   .metodo-keyword:nth-child(3),
   .metodo-keyword:nth-child(4) { display: none; }
 }
@@ -1077,10 +1097,6 @@ h1, h2, h3, h4 {
 }
 .combo-node-pulse--d2 { animation-delay: 0.65s; }
 .combo-node-pulse--d3 { animation-delay: 1.3s; }
-.combo-node-pulse--hub {
-  animation-duration: 3.4s;
-  filter: drop-shadow(0 0 4px rgba(249, 73, 1, 0.55));
-}
 @keyframes comboPulse {
   0% { opacity: 0.55; transform: scale(0.7); }
   70%, 100% { opacity: 0; transform: scale(1.7); }
@@ -1625,7 +1641,7 @@ h1, h2, h3, h4 {
   border: 1px solid var(--line-on-ink);
   box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.65);
 }
-.proof-layer__img--tall { max-height: 340px; object-fit: cover; object-position: top; }
+.proof-layer__img--tall { max-height: 340px; object-fit: cover; object-position: center; }
 .proof-layer__img--wide { object-fit: contain; background: var(--ink); }
 
 .proof-case__result {
@@ -1673,6 +1689,13 @@ h1, h2, h3, h4 {
   top: -14px; right: -4%;
   width: 40%;
   z-index: 3;
+}
+/* recorta o excesso de fundo vazio nas laterais (braços abertos) sem cortar o
+   rosto nem o cartão de perfil: mantém a altura inteira, só estreita a largura */
+.proof-case--cassulinha .proof-layer--main .proof-layer__img {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 60% center;
 }
 
 /* Case 3 — Reel: print primeiro (prova visual), resultado como conclusão logo abaixo */
