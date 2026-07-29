@@ -177,6 +177,7 @@ h1, h2, h3, h4 {
   background: var(--orange);
   color: var(--ink);
 }
+.section--crenca .section-title { color: var(--white); }
 
 .crenca-emphasis {
   font-style: italic;
@@ -936,8 +937,8 @@ h1, h2, h3, h4 {
   pointer-events: none;
 }
 @keyframes metodoGlowPulse {
-  0%, 100% { opacity: 0.68; transform: translateY(var(--parallax-y, 0px)) scale(0.96); }
-  50% { opacity: 1; transform: translateY(var(--parallax-y, 0px)) scale(1.04); }
+  0%, 100% { opacity: 0.72; transform: translateY(var(--parallax-y, 0px)) scale(0.99); }
+  50% { opacity: 0.92; transform: translateY(var(--parallax-y, 0px)) scale(1.01); }
 }
 @media (prefers-reduced-motion: reduce) {
   .metodo-photo__glow { animation: none; }
@@ -1016,8 +1017,6 @@ h1, h2, h3, h4 {
   backdrop-filter: blur(10px) saturate(160%);
   -webkit-backdrop-filter: blur(10px) saturate(160%);
   box-shadow: 0 10px 26px -10px rgba(249, 73, 1, 0.45);
-  animation: metodoKeywordLive 6s ease-in-out infinite;
-  animation-delay: var(--kdelay, 0s);
   transition: box-shadow 300ms var(--ease), border-color 300ms var(--ease), transform 300ms var(--ease);
 }
 @media (hover: hover) {
@@ -1034,28 +1033,19 @@ h1, h2, h3, h4 {
 /* variação de tamanho/opacidade/sombra pra sugerir profundidade: palavras
    "mais perto" (maiores, sombra mais forte) e "mais longe" (menores, sombra
    quase inexistente) — o padding em em escala junto com a fonte, então o
-   fundo sempre acompanha o texto. Cada camada também flutua num ritmo
-   levemente diferente, pra nunca ficarem sincronizadas entre si */
+   fundo sempre acompanha o texto */
 .metodo-keyword--sm {
   font-size: clamp(0.6rem, 1.2vw, 0.7rem);
   opacity: 0.8;
   box-shadow: 0 6px 16px -10px rgba(249, 73, 1, 0.35);
-  animation-duration: 7.8s;
 }
 .metodo-keyword--md {
   font-size: clamp(0.72rem, 1.5vw, 0.86rem);
-  animation-duration: 7.2s;
 }
 .metodo-keyword--lg {
   font-size: clamp(0.86rem, 2vw, 1.1rem);
   font-weight: 700;
   box-shadow: 0 16px 34px -12px rgba(249, 73, 1, 0.6);
-  animation-duration: 6.4s;
-}
-/* flutuação muito sutil (poucos pixels) + respiração leve, discreto */
-@keyframes metodoKeywordLive {
-  0%, 100% { transform: translateY(0) scale(0.985); }
-  50% { transform: translateY(-3px) scale(1); }
 }
 
 /* telas estreitas: a foto domina a largura da tela; as palavras circulam ao
@@ -1082,7 +1072,6 @@ h1, h2, h3, h4 {
   .metodo-keyword--md { font-size: clamp(0.66rem, 3.2vw, 0.8rem); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .metodo-keyword { animation: none; }
   .metodo-keyword-wrap.reveal { transition: none; opacity: 1; transform: translate(-50%, -50%) scale(1); }
   .metodo-kline { transition: none; stroke-dashoffset: 0; }
   .metodo-khub { transition: none; opacity: 0.38; }
@@ -1145,11 +1134,22 @@ h1, h2, h3, h4 {
 .radial-step__tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .radial-step__tags span {
   font-size: 0.76rem;
-  padding: 4px 12px;
+  font-weight: 600;
+  padding: 5px 14px;
   border-radius: 100px;
-  background: var(--white);
-  border: 1px solid rgba(20,20,26,0.12);
-  color: var(--text-on-paper-dim);
+  background: rgba(249, 73, 1, 0.08);
+  border: 1px solid rgba(249, 73, 1, 0.28);
+  color: var(--orange);
+  box-shadow: inset 0 1px 3px rgba(249, 73, 1, 0.16), inset 0 0 8px rgba(249, 73, 1, 0.08);
+  transition: background 250ms var(--ease), border-color 250ms var(--ease), box-shadow 250ms var(--ease), transform 250ms var(--ease);
+}
+@media (hover: hover) {
+  .radial-step__tags span:hover {
+    background: rgba(249, 73, 1, 0.13);
+    border-color: rgba(249, 73, 1, 0.5);
+    box-shadow: inset 0 1px 3px rgba(249, 73, 1, 0.2), inset 0 0 10px rgba(249, 73, 1, 0.14), 0 6px 16px -10px rgba(249, 73, 1, 0.4);
+    transform: translateY(-1px);
+  }
 }
 .method-closing {
   margin-top: 12px;
@@ -1186,7 +1186,7 @@ h1, h2, h3, h4 {
   margin-bottom: 4px;
   width: 96px;
   height: 64px;
-  animation: comboFloat 6s ease-in-out infinite;
+  animation: comboFloat 9s ease-in-out infinite;
   animation-delay: calc(var(--stagger, 0) * 0.6s);
 }
 .combo-card__visual svg { width: 100%; height: 100%; overflow: visible; }
@@ -1195,7 +1195,7 @@ h1, h2, h3, h4 {
 }
 @keyframes comboFloat {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-3px); }
+  50% { transform: translateY(-1px); }
 }
 
 /* energia percorrendo as linhas de conexão dos ícones de combinação */
@@ -1401,7 +1401,6 @@ h1, h2, h3, h4 {
 }
 @media (min-width: 860px) { .footer-top { grid-template-columns: 1.3fr 1fr 1fr; } }
 .footer-brand .brand { margin-bottom: 14px; }
-.footer-brand p { color: var(--text-on-ink-dim); max-width: 34ch; margin-bottom: 22px; }
 .footer-social { display: flex; gap: 12px; }
 .footer-social a {
   width: 40px; height: 40px;
@@ -1602,18 +1601,19 @@ h1, h2, h3, h4 {
 .service-node.is-active .service-node__icon { color: var(--orange); }
 .service-network.has-active .service-node:not(.is-active):not(.service-node--core) { opacity: 0.55; }
 
-/* ---- flutuação idle, um movimento distinto por nó ---- */
+/* ---- flutuação idle, um movimento distinto por nó — bem discreto, só uma
+   sugestão de vida, não um balanço perceptível ---- */
 @keyframes serviceFloatY {
   0%, 100% { margin-top: 0; }
-  50% { margin-top: -7px; }
+  50% { margin-top: -3px; }
 }
 @keyframes serviceFloatX {
   0%, 100% { margin-left: 0; }
-  50% { margin-left: 6px; }
+  50% { margin-left: 2px; }
 }
 @keyframes serviceFloatScale {
   0%, 100% { scale: 1; }
-  50% { scale: 1.018; }
+  50% { scale: 1.008; }
 }
 
 /* ---- dica + painel de detalhes ---- */
@@ -1744,10 +1744,10 @@ h1, h2, h3, h4 {
 .proof-layer__inner {
   transform: translateY(var(--parallax-y, 0px)) rotate(var(--tilt, 0deg));
 }
-.proof-layer__inner--float { animation: proofLayerFloat 6.5s ease-in-out infinite; }
+.proof-layer__inner--float { animation: proofLayerFloat 8s ease-in-out infinite; }
 @keyframes proofLayerFloat {
   0%, 100% { margin-top: 0; }
-  50% { margin-top: -7px; }
+  50% { margin-top: -3px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .proof-layer__inner--float { animation: none; }
