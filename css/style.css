@@ -893,6 +893,15 @@ h1, h2, h3, h4 {
   grid-template-columns: 1fr;
 }
 
+#metodo .section-title {
+  text-align: center;
+  margin-inline: auto;
+}
+.metodo-title-emphasis {
+  font-weight: 400;
+  font-style: italic;
+}
+
 .metodo-photo {
   position: relative;
   isolation: isolate;
@@ -900,10 +909,7 @@ h1, h2, h3, h4 {
   max-width: min(860px, calc(100% - 200px));
 }
 @media (max-width: 899.98px) {
-  /* a foto vira o elemento central: quase full-bleed, o resto da composição
-     se adapta a ela, não o contrário. padding-top abre uma "coroa" de
-     espaço vazio acima da foto — é ali (e só ali) que as palavras-chave
-     vivem, nunca sobre o rosto/corpo do casal */
+  /* a foto vira o elemento central: quase full-bleed */
   .metodo-photo {
     width: 100vw;
     max-width: 100vw;
@@ -911,10 +917,8 @@ h1, h2, h3, h4 {
     margin-left: -50vw;
     margin-right: -50vw;
     margin-bottom: 28px;
-    padding: 30vw 14px 0;
+    padding: 0 14px;
   }
-  /* o glow acompanha só a foto em si, não a coroa de texto acima dela */
-  .metodo-photo__glow { top: 30vw; }
 }
 .metodo-photo img {
   position: relative;
@@ -942,139 +946,6 @@ h1, h2, h3, h4 {
 }
 @media (prefers-reduced-motion: reduce) {
   .metodo-photo__glow { animation: none; }
-}
-
-/* palavras-chave da marca, ao redor da foto da equipe */
-.metodo-keywords {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-.metodo-keywords.reveal {
-  opacity: 1;
-  transform: none;
-  transition: none;
-}
-.metodo-keywords__lines {
-  display: none;
-}
-/* rede de conexão: curvas finas e suaves, baixa opacidade — parecem uma
-   única rede, não linhas retas isoladas. Cada uma se desenha na sequência
-   da palavra correspondente (--stagger-m), como se a linha "alcançasse"
-   a palavra no instante em que ela aparece */
-.metodo-kline {
-  fill: none;
-  stroke: var(--orange-soft);
-  stroke-width: 0.22;
-  stroke-linecap: round;
-  opacity: 0.22;
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
-  transition: stroke-dashoffset 0.9s var(--ease);
-  transition-delay: calc(0.55s + var(--stagger-m, 0) * 260ms);
-}
-.metodo-khub {
-  fill: var(--orange-soft);
-  opacity: 0;
-  transition: opacity 0.6s var(--ease) 0.3s;
-}
-.metodo-keywords.is-visible .metodo-kline { stroke-dashoffset: 0; }
-.metodo-keywords.is-visible .metodo-khub { opacity: 0.38; }
-
-/* entrada em cascata: o casal aparece primeiro (.metodo-photo.reveal, sem
-   delay), depois as linhas começam a se desenhar, depois cada palavra
-   "floresce" a partir do centro logo que sua linha chega até ela */
-.metodo-keyword-wrap.reveal {
-  position: absolute;
-  left: var(--kx);
-  top: var(--ky);
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.75);
-  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
-  transition-delay: calc(var(--stagger, 0) * 90ms);
-  pointer-events: auto;
-}
-.metodo-keyword-wrap.reveal.is-visible {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.metodo-keyword {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.6em 1.3em;
-  border-radius: 100px;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(0.68rem, 1.5vw, 0.82rem);
-  line-height: 1;
-  white-space: nowrap;
-  color: var(--orange-soft);
-  background: rgba(249, 122, 61, 0.14);
-  border: 1px solid rgba(249, 122, 61, 0.4);
-  backdrop-filter: blur(10px) saturate(160%);
-  -webkit-backdrop-filter: blur(10px) saturate(160%);
-  box-shadow: 0 10px 26px -10px rgba(249, 73, 1, 0.45);
-  transition: box-shadow 300ms var(--ease), border-color 300ms var(--ease), transform 300ms var(--ease);
-}
-@media (hover: hover) {
-  .metodo-keyword:hover {
-    border-color: rgba(249, 122, 61, 0.8);
-    box-shadow: 0 14px 32px -8px rgba(249, 73, 1, 0.7);
-    transform: scale(1.07);
-  }
-}
-.metodo-keyword:active {
-  border-color: rgba(249, 122, 61, 0.8);
-  box-shadow: 0 14px 32px -8px rgba(249, 73, 1, 0.7);
-}
-/* variação de tamanho/opacidade/sombra pra sugerir profundidade: palavras
-   "mais perto" (maiores, sombra mais forte) e "mais longe" (menores, sombra
-   quase inexistente) — o padding em em escala junto com a fonte, então o
-   fundo sempre acompanha o texto */
-.metodo-keyword--sm {
-  font-size: clamp(0.6rem, 1.2vw, 0.7rem);
-  opacity: 0.8;
-  box-shadow: 0 6px 16px -10px rgba(249, 73, 1, 0.35);
-}
-.metodo-keyword--md {
-  font-size: clamp(0.72rem, 1.5vw, 0.86rem);
-}
-.metodo-keyword--lg {
-  font-size: clamp(0.86rem, 2vw, 1.1rem);
-  font-weight: 700;
-  box-shadow: 0 16px 34px -12px rgba(249, 73, 1, 0.6);
-}
-
-/* telas estreitas: a foto domina a largura da tela; as palavras circulam ao
-   redor dela (composição radial: dois cantos acima, duas laterais, um canto
-   abaixo), sempre sobre áreas transparentes da própria foto, nunca sobre o
-   rosto do casal — pensado especificamente pro mobile, não é uma adaptação */
-@media (max-width: 899.98px) {
-  /* alinha o container das palavras exatamente com a caixa da foto (que tem
-     padding lateral na versão full-bleed), senão as porcentagens de posição
-     ficam relativas à largura errada e as palavras estouram a tela */
-  .metodo-keywords { inset: 0 14px; }
-  .metodo-keywords__lines { display: block; position: absolute; inset: 0; width: 100%; height: 100%; }
-  .metodo-keyword-wrap.reveal {
-    left: var(--kx-m);
-    top: var(--ky-m);
-    /* cascata mobile: casal -> linhas -> cada palavra floresce quando sua
-       própria linha chega até ela (--stagger-m, sincronizado com .metodo-kline) */
-    transition-delay: calc(0.75s + var(--stagger-m, 0) * 260ms);
-  }
-  .metodo-keyword {
-    font-size: clamp(0.62rem, 3vw, 0.76rem);
-  }
-  .metodo-keyword--lg { font-size: clamp(0.74rem, 3.6vw, 0.92rem); }
-  .metodo-keyword--md { font-size: clamp(0.66rem, 3.2vw, 0.8rem); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .metodo-keyword-wrap.reveal { transition: none; opacity: 1; transform: translate(-50%, -50%) scale(1); }
-  .metodo-kline { transition: none; stroke-dashoffset: 0; }
-  .metodo-khub { transition: none; opacity: 0.38; }
 }
 
 .method-radial__steps { display: flex; flex-direction: column; }
