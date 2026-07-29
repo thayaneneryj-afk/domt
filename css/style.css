@@ -900,7 +900,9 @@ h1, h2, h3, h4 {
 }
 @media (max-width: 899.98px) {
   /* a foto vira o elemento central: quase full-bleed, o resto da composição
-     se adapta a ela, não o contrário */
+     se adapta a ela, não o contrário. padding-top abre uma "coroa" de
+     espaço vazio acima da foto — é ali (e só ali) que as palavras-chave
+     vivem, nunca sobre o rosto/corpo do casal */
   .metodo-photo {
     width: 100vw;
     max-width: 100vw;
@@ -908,8 +910,10 @@ h1, h2, h3, h4 {
     margin-left: -50vw;
     margin-right: -50vw;
     margin-bottom: 28px;
-    padding: 0 14px;
+    padding: 30vw 14px 0;
   }
+  /* o glow acompanha só a foto em si, não a coroa de texto acima dela */
+  .metodo-photo__glow { top: 30vw; }
 }
 .metodo-photo img {
   position: relative;
