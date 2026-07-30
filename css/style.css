@@ -937,12 +937,17 @@ h1, h2, h3, h4 {
   z-index: -1;
   background: radial-gradient(circle, rgba(249, 73, 1, 0.5) 0%, rgba(249, 73, 1, 0.22) 46%, transparent 74%);
   filter: blur(52px);
+  transform: translateY(var(--parallax-y, 0px));
   animation: metodoGlowPulse 6s ease-in-out infinite;
   pointer-events: none;
 }
+/* só a opacidade pulsa — animar scale() junto com filter:blur() faz alguns
+   navegadores recalcularem os "tiles" do blur a cada frame, o que pisca uma
+   linha fina bem no limite do retângulo desfocado (visível onde a foto já
+   está esmaecendo pela máscara). Opacidade sozinha não tem esse problema. */
 @keyframes metodoGlowPulse {
-  0%, 100% { opacity: 0.72; transform: translateY(var(--parallax-y, 0px)) scale(0.99); }
-  50% { opacity: 0.92; transform: translateY(var(--parallax-y, 0px)) scale(1.01); }
+  0%, 100% { opacity: 0.72; }
+  50% { opacity: 0.92; }
 }
 @media (prefers-reduced-motion: reduce) {
   .metodo-photo__glow { animation: none; }
